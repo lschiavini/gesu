@@ -1,0 +1,51 @@
+error: the parable `half` may sin here and does not confess it
+  --> tests/errors/confess.gesu:11
+   |
+11 |     give divide(a, 2)
+   |
+   = it calls `divide`, which may sin
+   = hint: declare `half` with `may sin`, or wrap this in `tempt ... forgive`
+
+warning: the parable `pure` confesses a sin it cannot commit
+  --> tests/errors/confess.gesu:14
+   |
+14 | parable pure(a: Number) -> Number may sin
+   |
+   = nothing in it can sin; remove `may sin`
+
+error: the parable `stock` may sin here and does not confess it
+  --> tests/errors/confess.gesu:19
+   |
+19 |     let raw = inventory.count("loaves")
+   |
+   = it reaches into foreign code, which can fail
+   = hint: declare `stock` with `may sin`, or wrap this in `tempt ... forgive`
+
+error: a Pagan cannot be preached
+  --> tests/errors/confess.gesu:20
+   |
+20 |     preach raw
+   |
+   = hint: baptize it first, as in `baptize x as Text`
+
+error: this parable promises a Number and gives a Pagan
+  --> tests/errors/confess.gesu:21
+   |
+21 |     give raw
+   |
+
+error: `discern` must face every case; missing `Lost`
+  --> tests/errors/confess.gesu:25
+   |
+25 |     discern a
+   |
+   = the value is a Maybe Number
+
+warning: the rooster crows
+  --> tests/errors/confess.gesu:36
+   |
+36 | preach deny Jesus
+   |
+   = Jesus has been denied three times (lines 34, 35, 36)
+
+5 errors. Repent, and compile again.

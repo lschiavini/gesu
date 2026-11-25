@@ -1,0 +1,7 @@
+mortal sin: seventy times seven sins were forgiven, and this one is not: again
+  --> tests/errors/seventy.gesu:4
+   |
+ 4 |         sin "again"
+   |
+   = the wages of sin is death
+

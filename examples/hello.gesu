@@ -1,0 +1,34 @@
+-- The feeding of the five thousand.
+law DISCIPLES = 12
+
+parable enough(loaves: Number, fishes: Number, crowd: Number) -> Truth
+    give loaves + fishes >= crowd
+amen
+
+let loaves = 5
+let fishes = 2
+let crowd = 5000
+
+preach "{DISCIPLES} disciples, {loaves} loaves, {fishes} fishes, {crowd} mouths"
+
+if enough(loaves, fishes, crowd)
+    preach "there is enough"
+otherwise
+    preach "a miracle is needed"
+amen
+
+let fed = Jesus
+if fed is Jesus
+    preach "all ate and were satisfied"
+amen
+
+let mortal days = 0
+while days < 3
+    days = days + 1
+amen
+preach "risen on day {days}"
+
+repeat 2 times
+    preach "hosanna"
+amen
+amen

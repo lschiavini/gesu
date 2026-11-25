@@ -1,0 +1,39 @@
+error: `length` borrows this value: say so with `lend`
+  --> tests/errors/steal.gesu:2
+   |
+ 2 |     give length(list)
+   |
+   = a loan is written where it is made, so the reader sees what stays yours
+
+error: Thou shalt not steal
+  --> tests/errors/steal.gesu:7
+   |
+ 7 | preach apostles
+   |
+   = `apostles` was given to `twelve` on line 6
+   = hint: lend it there (`lend apostles`), or give away a `copy(lend apostles)`
+
+error: `count` takes this value for itself; it cannot be only lent
+  --> tests/errors/steal.gesu:8
+   |
+ 8 | preach count(lend twelve)
+   |
+   = hint: remove `lend`, or give a `copy(lend ...)`
+
+error: Thou shalt not steal
+  --> tests/errors/steal.gesu:9
+   |
+ 9 | preach count(twelve)
+   |
+   = `twelve` was given to `count` on line 8
+   = hint: lend it there (`lend twelve`), or give away a `copy(lend twelve)`
+
+error: Thou shalt not steal
+  --> tests/errors/steal.gesu:10
+   |
+10 | preach twelve
+   |
+   = `twelve` was given to `count` on line 8
+   = hint: lend it there (`lend twelve`), or give away a `copy(lend twelve)`
+
+5 errors. Repent, and compile again.

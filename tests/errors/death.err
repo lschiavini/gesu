@@ -1,0 +1,9 @@
+sin: divided by nothing
+  --> tests/errors/death.gesu:3
+   |
+ 3 |         sin "divided by nothing"
+   |
+   = in the parable `divide`, called on line 9
+   = in the parable `share`, called on line 12
+   = the wages of sin is death
+

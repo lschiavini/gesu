@@ -1,0 +1,38 @@
+-- A parable that can fail must confess it with `may sin`.
+parable divide(a: Number, b: Number) -> Number may sin
+    if b is 0
+        sin "divided by nothing"
+    amen
+    give a / b
+amen
+
+parable find(names: lend [Text], wanted: Text) -> Maybe Number
+    for each i, name in names
+        if name is wanted
+            give Found(i)
+        amen
+    amen
+    give Lost
+amen
+
+let apostles = ["Peter", "Andrew", "John"]
+let mortal place = 0
+
+discern find(lend apostles, "John")
+    Found(i): place = i
+    Lost: preach "not among the twelve"
+amen
+preach "John stands at {place}"
+
+discern find(lend apostles, "Judas")
+    Found(i): preach "found at {i}"
+    Lost: preach "Judas is not among them"
+amen
+
+tempt
+    preach divide(10, place)
+    preach divide(10, 0)
+forgive trespass
+    preach "forgiven: {trespass}"
+amen
+amen

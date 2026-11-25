@@ -1,0 +1,14 @@
+law DISCIPLES = 12
+let x = True
+let unused = 5
+let y = None
+DISCIPLES = 13
+if 0
+    preach "zero"
+amen
+preach "a" + 5
+preach x
+let fixed = 1
+fixed = 2
+preach fixed
+amen

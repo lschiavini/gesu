@@ -1,0 +1,4 @@
+Apostle(name: "Peter", fisherman: Jesus, age: Found(30))
+Apostle(name: "Matthew", fisherman: False, age: Lost)
+[{"name":"Peter","fisherman":true,"age":30},{"name":"Matthew","fisherman":false,"age":null}]
+forgiven: element 2: cannot baptize as Number: the pagan gave the Text "three"

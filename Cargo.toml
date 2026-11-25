@@ -1,0 +1,12 @@
+[package]
+name = "gesu"
+version = "0.1.0"
+edition = "2021"
+description = "Gesù: a programming language with one Truth"
+
+[dependencies]
+mlua = { version = "0.10", features = ["lua54", "vendored"] }
+pyo3 = { version = "0.23", features = ["auto-initialize"], optional = true }
+
+[features]
+python = ["dep:pyo3"]

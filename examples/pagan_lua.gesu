@@ -1,0 +1,18 @@
+-- Lua is a pagan. What it returns must be baptized before use.
+pagan lua "inventory.lua" as inventory
+
+parable stock(item: Text) -> Number may sin
+    give baptize inventory.count(item) as Number
+amen
+
+tempt
+    preach "loaves: {stock("loaves")}"
+    let fed = baptize inventory.multiply("loaves", 1000) as Number
+    preach "after the miracle: {fed}"
+    let baskets = baptize inventory.baskets() as [Text]
+    preach baskets
+    preach stock("wine")
+forgive trespass
+    preach "the pagans failed us: {trespass}"
+amen
+amen

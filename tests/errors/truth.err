@@ -1,0 +1,52 @@
+error: there is only one Truth, Jesus
+  --> tests/errors/truth.gesu:2
+   |
+ 2 | let x = True
+   |
+   = hint: write `Jesus` in place of `True`
+
+error: you buried your talent
+  --> tests/errors/truth.gesu:3
+   |
+ 3 | let unused = 5
+   |
+   = `unused` is never used
+   = hint: use it, remove it, or name it `_unused`
+
+error: unknown name `None`
+  --> tests/errors/truth.gesu:4
+   |
+ 4 | let y = None
+   |
+   = Gesù has no null; an absent value is `Lost`, of type `Maybe T`
+
+error: it is written: DISCIPLES is 12
+  --> tests/errors/truth.gesu:5
+   |
+ 5 | DISCIPLES = 13
+   |
+   = `DISCIPLES` is law
+
+error: `if` accepts only Jesus or False, and was given a Number
+  --> tests/errors/truth.gesu:6
+   |
+ 6 | if 0
+   |
+   = hint: compare it to something, as in `x is 0`
+
+error: a Text and a Number cannot be added
+  --> tests/errors/truth.gesu:9
+   |
+ 9 | preach "a" + 5
+   |
+   = Gesù has no implicit conversions
+   = hint: place the value inside the text, as in "total: {x}"
+
+error: `fixed` is not mortal and cannot change
+  --> tests/errors/truth.gesu:12
+   |
+12 | fixed = 2
+   |
+   = hint: declare it with `let mortal fixed`
+
+7 errors. Repent, and compile again.

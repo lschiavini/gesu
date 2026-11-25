@@ -1,0 +1,14 @@
+warning: the rooster crows
+  --> tests/errors/rooster.gesu:3
+   |
+ 3 | preach deny Jesus
+   |
+   = Jesus has been denied three times (lines 1, 2, 3)
+
+mortal sin: the number grew too great to hold
+  --> tests/errors/rooster.gesu:5
+   |
+ 5 | preach big + 1
+   |
+   = the wages of sin is death
+

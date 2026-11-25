@@ -1,0 +1,13 @@
+parable divide(a: Number, b: Number) -> Number may sin
+    if b is 0
+        sin "divided by nothing"
+    amen
+    give a / b
+amen
+
+parable share(loaves: Number, crowd: Number) -> Number may sin
+    give divide(loaves, crowd)
+amen
+
+preach share(5, 0)
+amen

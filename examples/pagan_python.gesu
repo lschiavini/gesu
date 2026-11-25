@@ -1,0 +1,17 @@
+-- Python is a pagan too. Build gesu with `--features python` to run this.
+pagan python "statistics" as stats
+pagan python "math" as math
+
+parable average(values: lend [Number]) -> Decimal may sin
+    let raw = stats.mean(values)
+    give baptize raw as Decimal
+amen
+
+tempt
+    preach average(lend [5, 2, 12])
+    preach baptize math.gcd(490, 70) as Number
+    preach average(lend [])
+forgive trespass
+    preach "the pagans failed us: {trespass}"
+amen
+amen

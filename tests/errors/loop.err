@@ -1,0 +1,38 @@
+error: Thou shalt not steal
+  --> tests/errors/loop.gesu:12
+   |
+12 |     keep(ys)
+   |
+   = `ys` was given to `keep` on an earlier turn of this loop
+   = hint: lend it there (`lend ys`), or give away a `copy(lend ys)`
+
+error: `xs` cannot change while `for each` walks through it
+  --> tests/errors/loop.gesu:15
+   |
+15 |     push(entrust xs, x)
+   |
+   = hint: walk through a `copy(lend ...)`, or use `repeat` with an index
+
+error: no one can serve two masters
+  --> tests/errors/loop.gesu:17
+   |
+17 | grow(entrust xs, lend xs)
+   |
+   = `xs` is entrusted and also used elsewhere in this call
+
+error: you cannot take a part and leave the whole
+  --> tests/errors/loop.gesu:19
+   |
+19 | let inner = zs[0]
+   |
+   = this [Number] would be moved out of the value that holds it
+   = hint: `copy(lend ...)` it, or lend it
+
+error: the type of `empty` cannot be told from its value
+  --> tests/errors/loop.gesu:21
+   |
+21 | let empty = []
+   |
+   = hint: declare it, as in `let empty: [Number] = []`
+
+5 errors. Repent, and compile again.

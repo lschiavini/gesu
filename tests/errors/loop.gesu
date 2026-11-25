@@ -1,0 +1,22 @@
+parable keep(list: [Number])
+    preach length(lend list)
+amen
+
+parable grow(a: entrust [Number], b: lend [Number])
+    push(entrust a, length(b))
+amen
+
+let mortal xs = [1, 2, 3]
+let ys = [4]
+repeat 2 times
+    keep(ys)
+amen
+for each x in xs
+    push(entrust xs, x)
+amen
+grow(entrust xs, lend xs)
+let zs = [[1], [2]]
+let inner = zs[0]
+preach inner
+let empty = []
+amen

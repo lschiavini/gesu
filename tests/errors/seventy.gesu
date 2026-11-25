@@ -1,0 +1,12 @@
+let mortal forgiven = 0
+repeat 500 times
+    tempt
+        sin "again"
+    forgive trespass
+        forgiven = forgiven + 1
+        if forgiven is 490
+            preach "forgiven {forgiven} times: {trespass}"
+        amen
+    amen
+amen
+amen

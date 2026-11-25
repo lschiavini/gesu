@@ -1,0 +1,27 @@
+-- A value has one owner. It can be given, lent, or entrusted.
+parable count(names: lend [Text]) -> Number
+    give length(names)
+amen
+
+parable call(names: entrust [Text], name: Text)
+    push(entrust names, name)
+amen
+
+parable send(names: [Text]) -> Text
+    give join(lend names, ", ")
+amen
+
+let mortal apostles = ["Peter", "Andrew", "John"]
+
+preach count(lend apostles)
+call(entrust apostles, "Matthew")
+preach count(lend apostles)
+
+for each i, name in apostles
+    preach "{i}: {name}"
+amen
+
+let twelve = copy(lend apostles)
+preach send(apostles)
+preach twelve
+amen

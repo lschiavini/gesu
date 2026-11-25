@@ -1,0 +1,21 @@
+-- JSON is pagan data. It is baptized into kinds.
+kind Apostle
+    name: Text
+    fisherman: Truth
+    age: Maybe Number
+amen
+
+let raw = "[\{\"name\": \"Peter\", \"fisherman\": true, \"age\": 30}, \{\"name\": \"Matthew\", \"fisherman\": false}]"
+
+tempt
+    let apostles = baptize parse_json(raw) as [Apostle]
+    for each a in apostles
+        preach a
+    amen
+    preach to_json(lend apostles)
+    let wrong = baptize parse_json("[1, 2, \"three\"]") as [Number]
+    preach wrong
+forgive trespass
+    preach "forgiven: {trespass}"
+amen
+amen

@@ -1,0 +1,41 @@
+-- Every creature after its kind.
+kind Disciple
+    name: Text
+    denials: Number
+amen
+
+kind Verdict
+    Saved
+    Condemned(Text)
+amen
+
+parable judge(d: lend Disciple) -> Verdict
+    if d.denials >= 3
+        give Condemned("{d.name} denied him {d.denials} times")
+    amen
+    give Saved
+amen
+
+let mortal peter = Disciple(name: "Peter", denials: 0)
+repeat 3 times
+    peter.denials = peter.denials + 1
+amen
+preach peter
+
+discern judge(lend peter)
+    Saved: preach "saved"
+    Condemned(reason):
+        preach "condemned: {reason}"
+        preach "and yet forgiven"
+amen
+
+let ages = {"Methuselah": 969, "Noah": 950}
+for each name, age in ages
+    preach "{name} lived {age} years"
+amen
+
+discern lookup(lend ages, "Adam")
+    Found(age): preach "Adam lived {age} years"
+    Lost: preach "Adam's age is not written here"
+amen
+amen

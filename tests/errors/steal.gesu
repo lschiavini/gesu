@@ -1,0 +1,11 @@
+parable count(list: [Text]) -> Number
+    give length(list)
+amen
+
+let apostles = ["Peter", "Andrew"]
+let twelve = apostles
+preach apostles
+preach count(lend twelve)
+preach count(twelve)
+preach twelve
+amen

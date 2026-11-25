@@ -1,0 +1,37 @@
+pagan lua "inventory.lua" as inventory
+
+parable divide(a: Number, b: Number) -> Number may sin
+    if b is 0
+        sin "divided by nothing"
+    amen
+    give a / b
+amen
+
+parable half(a: Number) -> Number
+    give divide(a, 2)
+amen
+
+parable pure(a: Number) -> Number may sin
+    give a + 1
+amen
+
+parable stock() -> Number
+    let raw = inventory.count("loaves")
+    preach raw
+    give raw
+amen
+
+parable maybe(a: Maybe Number) -> Number
+    discern a
+        Found(n): give n
+    amen
+amen
+
+preach half(4)
+preach pure(1)
+preach stock()
+preach maybe(Lost)
+preach deny Jesus
+preach deny Jesus
+preach deny Jesus
+amen
