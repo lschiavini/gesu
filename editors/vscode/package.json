@@ -3,7 +3,7 @@
   "displayName": "Gesù",
   "description": "Gesù language support: syntax colors, errors as you type, completion and hover. There is only one Truth, Jesus.",
   "version": "0.1.0",
-  "publisher": "lschiavini",
+  "publisher": "LucasSchiavini",
   "license": "UNLICENSED",
   "engines": {
     "vscode": "^1.82.0"
