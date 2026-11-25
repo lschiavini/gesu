@@ -213,12 +213,21 @@ PAGE = """<!doctype html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Gesù: there is only one Truth, Jesus</title>
-<meta name="description" content="Gesù is a programming language with two booleans. One is False. The other is Jesus.">
+<meta name="description" content="Gesù (Italian for Jesus) is a programming language with two booleans. One is False. The other is Jesus.">
 <meta property="og:title" content="Gesù: there is only one Truth, Jesus">
-<meta property="og:description" content="A programming language with two booleans. One is False. The other is Jesus.">
+<meta property="og:description" content="Gesù (Italian for Jesus) is a programming language with two booleans. One is False. The other is Jesus.">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%238f1d1d'/%3E%3Cpath d='M14 5h4v7h7v4h-7v11h-4V16H7v-4h7z' fill='%23f6efe0'/%3E%3C/svg%3E">
-<meta property="og:image" content="https://gesu-lang.com/logo.png">
+<meta property="og:url" content="https://gesu-lang.com/">
+<meta property="og:site_name" content="Gesù">
+<meta property="og:image" content="https://gesu-lang.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Gesù, a programming language. There is only one Truth, Jesus.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Gesù: there is only one Truth, Jesus">
+<meta name="twitter:description" content="Gesù (Italian for Jesus) is a programming language with two booleans. One is False. The other is Jesus.">
+<meta name="twitter:image" content="https://gesu-lang.com/og.png">
 <link rel="apple-touch-icon" href="/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

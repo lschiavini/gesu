@@ -1,0 +1,128 @@
+<!doctype html>
+<!-- The picture shown when gesu-lang.com is shared. Turned into og.png by og.sh. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,500&family=EB+Garamond:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; }
+body {
+  width: 1200px;
+  height: 630px;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 28% 40%, #fbf6ea 0%, #f3e9d3 62%, #e9dcc0 100%);
+  color: #221b16;
+  font-family: "EB Garamond", Georgia, serif;
+}
+/* A page from a missal: two fine rules around it. */
+.frame {
+  position: absolute;
+  inset: 22px;
+  border: 1.5px solid #a88443;
+  border-radius: 14px;
+}
+.frame::after {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  border: 1px solid #cdb37c;
+  border-radius: 9px;
+}
+.page {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 520px 1fr;
+  align-items: center;
+  padding: 0 74px 0 86px;
+  gap: 40px;
+}
+.over {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 19px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #a88443;
+}
+.over img { width: 54px; height: 54px; border-radius: 12px; box-shadow: 0 10px 20px -10px #4a0d0d; }
+h1 {
+  margin: 2px 0 0 -8px;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 232px;
+  font-weight: 700;
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+  color: #8f1d1d;
+}
+.headline {
+  margin-top: 6px;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 47px;
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+.name {
+  margin-top: 26px;
+  padding-top: 20px;
+  border-top: 1px solid #cdb37c;
+  font-size: 25px;
+  color: #6b5d51;
+}
+.name b { font-weight: 500; color: #221b16; }
+
+.cards { display: flex; flex-direction: column; gap: 18px; transform: rotate(1.6deg); }
+pre {
+  font-family: "JetBrains Mono", Menlo, monospace;
+  font-size: 22px;
+  line-height: 1.62;
+}
+.code {
+  padding: 26px 30px;
+  border-radius: 16px;
+  background: #1d1814;
+  color: #eadfca;
+  box-shadow: 0 30px 50px -28px #2a1a0a, 0 0 0 1px #3a3028;
+}
+.k { color: #e0a36b; }
+.j { color: #f2cf6b; font-weight: 500; }
+.f { color: #dba6a0; }
+.h { color: #ff8f80; text-decoration: line-through; text-decoration-thickness: 2px; }
+.c { color: #85776a; font-style: italic; }
+.error {
+  padding: 20px 26px;
+  border-radius: 14px;
+  background: #fbf7ec;
+  border: 1px solid #dccfb4;
+  border-left: 5px solid #8f1d1d;
+  box-shadow: 0 24px 40px -28px #2a1a0a;
+}
+.error pre { font-size: 17.5px; }
+.x { color: #8f1d1d; font-weight: 500; }
+.d { color: #8a7c6c; }
+</style>
+</head>
+<body>
+<div class="frame"></div>
+<div class="page">
+  <div>
+    <div class="over"><img src="logo.png" alt=""><span>A programming language</span></div>
+    <h1>Gesù</h1>
+    <div class="headline">There is only one Truth, Jesus.</div>
+    <div class="name"><b>Gesù</b> is Italian for Jesus &nbsp;·&nbsp; gesu-lang.com</div>
+  </div>
+  <div class="cards">
+    <div class="code"><pre><span class="c">-- two booleans</span>
+<span class="k">let</span> risen = <span class="j">Jesus</span>
+<span class="k">let</span> doubt = <span class="f">False</span>
+<span class="k">let</span> x = <span class="h">True</span></pre></div>
+    <div class="error"><pre><span class="x">error</span>: there is only one Truth, Jesus
+<span class="d">  = hint: write `Jesus`</span></pre></div>
+  </div>
+</div>
+</body>
+</html>

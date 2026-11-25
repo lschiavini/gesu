@@ -8,6 +8,8 @@
 
 Gesù is a programming language with two booleans. One is `False`. The other is `Jesus`.
 
+The name is Italian for Jesus. Say it *jeh-ZOO*, with the weight on the end.
+
 There is no `True`. Write it and the compiler stops you on that line:
 
 ```
