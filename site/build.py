@@ -15,7 +15,7 @@ README = ROOT.parent / "README.md"
 
 KEYWORDS = set(
     "let mortal law parable give amen if otherwise while repeat times for each in break continue "
-    "tempt forgive sin may preach deny and or is not lend entrust discern kind pagan baptize as".split()
+    "tempt forgive sin may preach deny and or is not lend entrust discern kind pagan baptize as repent".split()
 )
 TYPES = set("Number Decimal Text Truth Maybe Pagan Nothing Found Lost".split())
 BUILTINS = set(

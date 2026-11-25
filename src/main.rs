@@ -121,6 +121,9 @@ fn real_main() -> i32 {
         if info.trace.len() > 8 {
             notes.push(format!("and {} more calls beneath", info.trace.len() - 8));
         }
+        if let Some(hint) = &info.hint {
+            notes.insert(0, hint.clone());
+        }
         notes.push("the wages of sin is death".into());
         let text = render(label, &info.message, info.line, &notes, &file, &src);
         eprintln!("{}", text.replacen(label, &paint(label, "31"), 1));

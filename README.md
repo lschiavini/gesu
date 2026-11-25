@@ -35,7 +35,7 @@ There is no magic in it. There is patient attention to detail.
 
 **4.** A parable that can fail must say so in its signature: `may sin`. Call it without `tempt ... forgive`, and without confessing in turn, and the program does not compile.
 
-**5.** Gesù forgives 490 sins per run, as Matthew 18:22 instructs. The 491st is not forgiven, and the program dies.
+**5.** Gesù forgives 490 sins per run, as Matthew 18:22 instructs. The 491st is not forgiven, and the program dies. Unless it repents first, as Luke 17:4 allows.
 
 **6.** There is no null. A value that may be absent is `Found(x)` or `Lost`, and `discern` makes you face both.
 
@@ -51,7 +51,7 @@ There is no magic in it. There is patient attention to detail.
 
 **12.** The whole of Lua is compiled into the binary. Python can be added with one flag. Both are pagans: whatever they return must be baptized before Gesù will touch it.
 
-**13.** The binary is 1.5 megabytes and starts in under a hundredth of a second. It has 35 words and 33 built-in parables. One for each year.
+**13.** The binary is 1.5 megabytes and starts in under a hundredth of a second. It has 36 words and 33 built-in parables. One for each year.
 
 **14.** Every block ends with `amen`. So does every program. A file without its final `amen` does not run.
 
@@ -311,7 +311,7 @@ sin: divided by nothing
 
 In Matthew 18:21-22, Peter asks how often he must forgive his brother: "Up to seven times?" Jesus answers: "I do not say to you, up to seven times, but up to seventy times seven."
 
-Seventy times seven is 490, and Gesù keeps the count. Each time a `forgive` block catches a sin, the count goes up by one. It never goes down and it is shared by the whole run. The 491st sin is not forgiven:
+Seventy times seven is 490, and Gesù keeps the count. There is one count for the whole run. Each time any `forgive` block catches a sin, it goes up by one, wherever that block is. The 491st sin is not forgiven:
 
 ```lua
 let mortal forgiven = 0
@@ -331,10 +331,39 @@ mortal sin: Matthew 18:22: forgive can only be run 490 times (unforgiven: again)
    |
  4 |         sin "again"
    |
+   = hint: `repent` when a unit of work is done, and the count starts over
    = the wages of sin is death
 ```
 
-What this means for you: `tempt ... forgive` is for the rare failure. A program that expects to fail more than 490 times, such as one reading 10,000 lines where many are bad, should check before it acts (`get`, `lookup` and `contains` give an answer without sinning) and keep `forgive` for what it could not foresee.
+### Repent
+
+Luke 17:4: "If he sins against you seven times in a day, and seven times returns to you saying, 'I repent', you must forgive him."
+
+`repent` sets the count back to zero. A program that runs for a long time repents when a unit of work is done: one request served, one file read, one turn of its main loop.
+
+```lua
+let mortal forgiven = 0
+
+repeat 10 times
+    repent
+    repeat 100 times
+        tempt
+            sin "again"
+        forgive _trespass
+            forgiven = forgiven + 1
+        amen
+    amen
+amen
+
+preach "forgiven {forgiven} times, and still running"
+amen
+```
+
+```
+forgiven 1000 times, and still running
+```
+
+What the count is for: 490 failures inside one unit of work means that work is failing over and over, and stopping is the right answer. Other systems call this a circuit breaker and make you build it. A server that repents on every request never meets the limit. A loop that forgets to repent does.
 
 ### Mortal sins
 

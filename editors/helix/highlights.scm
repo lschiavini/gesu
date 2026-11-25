@@ -24,7 +24,7 @@
 "parable" @keyword.function
 ["if" "otherwise" "discern"] @keyword.control.conditional
 ["while" "repeat" "times" "for" "each" "in" "break" "continue"] @keyword.control.repeat
-["tempt" "forgive" "sin" "may"] @keyword.control.exception
+["tempt" "forgive" "sin" "may" "repent"] @keyword.control.exception
 ["mortal" "lend" "entrust"] @keyword.storage.modifier
 ["deny" "and" "or" "is" "not"] @keyword.operator
 

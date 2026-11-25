@@ -131,6 +131,7 @@ pub enum StmtKind {
     ForEach { first: String, second: Option<String>, iter: Expr, body: Vec<Stmt> },
     Break,
     Continue,
+    Repent,
     Tempt { body: Vec<Stmt>, name: String, handler: Vec<Stmt> },
     Discern { subject: Expr, arms: Vec<Arm> },
     Parable(Rc<Parable>),

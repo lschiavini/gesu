@@ -46,7 +46,7 @@
         { "name": "constant.language.maybe.gesu", "match": "\\b(Found|Lost)\\b" },
         {
           "name": "keyword.control.gesu",
-          "match": "\\b(if|otherwise|discern|while|repeat|times|for|each|in|break|continue|tempt|forgive|sin|may|give|amen)\\b"
+          "match": "\\b(if|otherwise|discern|while|repeat|times|for|each|in|break|continue|tempt|forgive|sin|may|repent|give|amen)\\b"
         },
         { "name": "keyword.other.gesu", "match": "\\b(let|law|preach|kind|pagan|baptize|as)\\b" },
         { "name": "storage.type.function.gesu", "match": "\\bparable\\b" },

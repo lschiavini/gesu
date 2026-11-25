@@ -43,7 +43,7 @@ pub enum Tok {
 pub const KEYWORDS: &[&str] = &[
     "let", "mortal", "law", "parable", "give", "amen", "if", "otherwise", "while", "repeat", "times", "for",
     "each", "in", "break", "continue", "tempt", "forgive", "sin", "may", "preach", "deny", "and", "or", "is",
-    "not", "lend", "entrust", "discern", "kind", "pagan", "baptize", "as", "Jesus", "False",
+    "not", "lend", "entrust", "discern", "kind", "pagan", "baptize", "as", "repent", "Jesus", "False",
 ];
 
 pub fn lex(src: &str, first_line: usize) -> Result<Vec<(Tok, usize)>, Diag> {

@@ -339,6 +339,11 @@ impl Parser {
                 self.end_stmt()?;
                 StmtKind::Continue
             }
+            Tok::Kw("repent") => {
+                self.advance();
+                self.end_stmt()?;
+                StmtKind::Repent
+            }
             Tok::Kw("tempt") => {
                 self.advance();
                 self.expect(Tok::Newline)?;

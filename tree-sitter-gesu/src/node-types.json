@@ -165,6 +165,10 @@
           "named": true
         },
         {
+          "type": "repent_statement",
+          "named": true
+        },
+        {
           "type": "sin_statement",
           "named": true
         },
@@ -548,6 +552,10 @@
         },
         {
           "type": "repeat_statement",
+          "named": true
+        },
+        {
+          "type": "repent_statement",
           "named": true
         },
         {
@@ -2446,6 +2454,11 @@
     }
   },
   {
+    "type": "repent_statement",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "sin_statement",
     "named": true,
     "fields": {},
@@ -2587,6 +2600,10 @@
         },
         {
           "type": "repeat_statement",
+          "named": true
+        },
+        {
+          "type": "repent_statement",
           "named": true
         },
         {
@@ -2986,6 +3003,10 @@
   },
   {
     "type": "repeat",
+    "named": false
+  },
+  {
+    "type": "repent",
     "named": false
   },
   {

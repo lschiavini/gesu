@@ -44,6 +44,7 @@ module.exports = grammar({
         $.for_statement,
         $.break_statement,
         $.continue_statement,
+        $.repent_statement,
         $.tempt_statement,
         $.discern_statement,
         $.parable,
@@ -72,6 +73,7 @@ module.exports = grammar({
     sin_statement: ($) => seq("sin", $._expression, $._nl),
     break_statement: ($) => seq("break", $._nl),
     continue_statement: ($) => seq("continue", $._nl),
+    repent_statement: ($) => seq("repent", $._nl),
     expression_statement: ($) => seq($._expression, $._nl),
 
     if_statement: ($) =>

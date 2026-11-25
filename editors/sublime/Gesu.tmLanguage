@@ -188,7 +188,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b(if|otherwise|discern|while|repeat|times|for|each|in|break|continue|tempt|forgive|sin|may|give|amen)\b</string>
+					<string>\b(if|otherwise|discern|while|repeat|times|for|each|in|break|continue|tempt|forgive|sin|may|repent|give|amen)\b</string>
 					<key>name</key>
 					<string>keyword.control.gesu</string>
 				</dict>

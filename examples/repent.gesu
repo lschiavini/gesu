@@ -1,0 +1,17 @@
+-- 490 sins are forgiven per run (Matthew 18:22), unless the program
+-- repents (Luke 17:4). Here 1000 are forgiven, 100 at a time.
+let mortal forgiven = 0
+
+repeat 10 times
+    repent
+    repeat 100 times
+        tempt
+            sin "again"
+        forgive _trespass
+            forgiven = forgiven + 1
+        amen
+    amen
+amen
+
+preach "forgiven {forgiven} times, and still running"
+amen

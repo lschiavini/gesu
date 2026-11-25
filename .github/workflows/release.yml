@@ -46,3 +46,20 @@ jobs:
           # Five jobs race to create the release; the losers only upload.
           gh release create "$GITHUB_REF_NAME" --title "$GITHUB_REF_NAME" --generate-notes || true
           gh release upload "$GITHUB_REF_NAME" gesu-${{ matrix.target }}.* --clobber
+
+  extension:
+    # The editor extension, for Cursor and VSCodium, which cannot use the
+    # VS Code Marketplace.
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Pack
+        working-directory: editors/vscode
+        run: |
+          npm install --no-audit --no-fund
+          npx --yes @vscode/vsce package --allow-missing-repository --skip-license --out gesu-lang.vsix
+      - name: Attach to the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload "$GITHUB_REF_NAME" editors/vscode/gesu-lang.vsix --clobber

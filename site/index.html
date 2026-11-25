@@ -350,7 +350,7 @@ main > p:last-child {
 <div class="fact"><span class="numeral">2</span><p>A value has one owner. Give it away and it is gone. Use it afterwards and you are told who has it and since which line. The error is called <code>Thou shalt not steal</code>.</p></div>
 <div class="fact"><span class="numeral">3</span><p>There are no lifetime annotations. A loan lasts for one call and cannot be stored or returned. You write <code>lend</code> or <code>entrust</code> where the loan is made, and that is the whole ceremony.</p></div>
 <div class="fact"><span class="numeral">4</span><p>A parable that can fail must say so in its signature: <code>may sin</code>. Call it without <code>tempt ... forgive</code>, and without confessing in turn, and the program does not compile.</p></div>
-<div class="fact"><span class="numeral">5</span><p>Gesù forgives 490 sins per run, as Matthew 18:22 instructs. The 491st is not forgiven, and the program dies.</p></div>
+<div class="fact"><span class="numeral">5</span><p>Gesù forgives 490 sins per run, as Matthew 18:22 instructs. The 491st is not forgiven, and the program dies. Unless it repents first, as Luke 17:4 allows.</p></div>
 <div class="fact"><span class="numeral">6</span><p>There is no null. A value that may be absent is <code>Found(x)</code> or <code>Lost</code>, and <code>discern</code> makes you face both.</p></div>
 <div class="fact"><span class="numeral">7</span><p>A variable you declare and never use is an error. The message is <code>you buried your talent</code>.</p></div>
 <div class="fact"><span class="numeral">8</span><p>Nothing changes unless you declared it <code>mortal</code>. A <code>law</code> never changes. Try, and you are reminded: <code>it is written: DISCIPLES is 12</code>.</p></div>
@@ -358,7 +358,7 @@ main > p:last-child {
 <div class="fact"><span class="numeral">10</span><p>There are no implicit conversions. A Number and a Decimal do not mix until you say how.</p></div>
 <div class="fact"><span class="numeral">11</span><p>Deny Jesus three times in one program and the rooster crows. It is a warning, and the program still runs.</p></div>
 <div class="fact"><span class="numeral">12</span><p>The whole of Lua is compiled into the binary. Python can be added with one flag. Both are pagans: whatever they return must be baptized before Gesù will touch it.</p></div>
-<div class="fact"><span class="numeral">13</span><p>The binary is 1.5 megabytes and starts in under a hundredth of a second. It has 35 words and 33 built-in parables. One for each year.</p></div>
+<div class="fact"><span class="numeral">13</span><p>The binary is 1.5 megabytes and starts in under a hundredth of a second. It has 36 words and 33 built-in parables. One for each year.</p></div>
 <div class="fact"><span class="numeral">14</span><p>Every block ends with <code>amen</code>. So does every program. A file without its final <code>amen</code> does not run.</p></div>
 <h2 id="install">Install</h2>
 <p>Mac and Linux, one line. It downloads the binary for your machine into <code>~/.local/bin</code>:</p>
@@ -535,7 +535,7 @@ forgiven: divided by nothing</code></pre>
 <span class="d">   = the wages of sin is death</span></code></pre>
 <h3 id="seventy-times-seven">Seventy times seven</h3>
 <p>In Matthew 18:21-22, Peter asks how often he must forgive his brother: "Up to seven times?" Jesus answers: "I do not say to you, up to seven times, but up to seventy times seven."</p>
-<p>Seventy times seven is 490, and Gesù keeps the count. Each time a <code>forgive</code> block catches a sin, the count goes up by one. It never goes down and it is shared by the whole run. The 491st sin is not forgiven:</p>
+<p>Seventy times seven is 490, and Gesù keeps the count. There is one count for the whole run. Each time any <code>forgive</code> block catches a sin, it goes up by one, wherever that block is. The 491st sin is not forgiven:</p>
 <pre class="gesu"><code><span class="k">let</span> <span class="k">mortal</span> forgiven = <span class="n">0</span>
 <span class="k">repeat</span> <span class="n">500</span> <span class="k">times</span>
     <span class="k">tempt</span>
@@ -550,8 +550,28 @@ forgiven: divided by nothing</code></pre>
 <span class="d">   |</span>
 <span class="d"> 4 |         sin &quot;again&quot;</span>
 <span class="d">   |</span>
+<span class="d">   = hint: `repent` when a unit of work is done, and the count starts over</span>
 <span class="d">   = the wages of sin is death</span></code></pre>
-<p>What this means for you: <code>tempt ... forgive</code> is for the rare failure. A program that expects to fail more than 490 times, such as one reading 10,000 lines where many are bad, should check before it acts (<code>get</code>, <code>lookup</code> and <code>contains</code> give an answer without sinning) and keep <code>forgive</code> for what it could not foresee.</p>
+<h3 id="repent">Repent</h3>
+<p>Luke 17:4: "If he sins against you seven times in a day, and seven times returns to you saying, 'I repent', you must forgive him."</p>
+<p><code>repent</code> sets the count back to zero. A program that runs for a long time repents when a unit of work is done: one request served, one file read, one turn of its main loop.</p>
+<pre class="gesu"><code><span class="k">let</span> <span class="k">mortal</span> forgiven = <span class="n">0</span>
+
+<span class="k">repeat</span> <span class="n">10</span> <span class="k">times</span>
+    <span class="k">repent</span>
+    <span class="k">repeat</span> <span class="n">100</span> <span class="k">times</span>
+        <span class="k">tempt</span>
+            <span class="k">sin</span> <span class="s">&quot;again&quot;</span>
+        <span class="k">forgive</span> _trespass
+            forgiven = forgiven + <span class="n">1</span>
+        <span class="k">amen</span>
+    <span class="k">amen</span>
+<span class="k">amen</span>
+
+<span class="k">preach</span> <span class="s">&quot;forgiven </span><span class="i">{forgiven}</span><span class="s"> times, and still running&quot;</span>
+<span class="k">amen</span></code></pre>
+<pre class="output"><code>forgiven 1000 times, and still running</code></pre>
+<p>What the count is for: 490 failures inside one unit of work means that work is failing over and over, and stopping is the right answer. Other systems call this a circuit breaker and make you build it. A server that repents on every request never meets the limit. A loop that forgets to repent does.</p>
 <h3 id="mortal-sins">Mortal sins</h3>
 <p>Some sins are mortal. Nothing forgives them: an index past the end of a multitude, a missing key, a Number grown past 9223372036854775807, a parable calling itself 2000 deep. For the first two there are safe forms, <code>get</code> and <code>lookup</code>, which give a <code>Maybe</code>.</p>
 <h2 id="kinds">Kinds</h2>

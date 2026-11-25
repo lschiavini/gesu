@@ -141,6 +141,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "repent_statement"
+        },
+        {
+          "type": "SYMBOL",
           "name": "tempt_statement"
         },
         {
@@ -375,6 +379,19 @@
         {
           "type": "STRING",
           "value": "continue"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_nl"
+        }
+      ]
+    },
+    "repent_statement": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "repent"
         },
         {
           "type": "SYMBOL",

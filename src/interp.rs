@@ -17,6 +17,8 @@ pub struct SinInfo {
     pub line: usize,
     /// Parables that were running, innermost last, with the line of each call.
     pub trace: Vec<(String, usize)>,
+    /// What the programmer can do about it, when there is something.
+    pub hint: Option<String>,
 }
 
 /// Everything that interrupts the normal order of statements.
@@ -87,7 +89,7 @@ impl Interp {
     }
 
     fn info(&self, line: usize, message: impl Into<String>) -> SinInfo {
-        SinInfo { message: message.into(), line, trace: self.calls.clone() }
+        SinInfo { message: message.into(), line, trace: self.calls.clone(), hint: None }
     }
 
     fn sin(&self, line: usize, message: impl Into<String>) -> Flow {
@@ -264,6 +266,8 @@ impl Interp {
                     }
                 }
             }
+            // Luke 17:4: the count of forgiven sins starts over.
+            StmtKind::Repent => self.forgiven = 0,
             StmtKind::Break => return Err(Flow::Break),
             StmtKind::Continue => return Err(Flow::Continue),
             StmtKind::Tempt { body, name, handler } => match self.block(body) {
@@ -271,7 +275,8 @@ impl Interp {
                     self.forgiven += 1;
                     if self.forgiven > FORGIVENESS {
                         let message = format!("Matthew 18:22: forgive can only be run {FORGIVENESS} times (unforgiven: {})", info.message);
-                        return Err(Flow::Mortal(SinInfo { message, ..info }));
+                        let hint = "hint: `repent` when a unit of work is done, and the count starts over".to_string();
+                        return Err(Flow::Mortal(SinInfo { message, hint: Some(hint), ..info }));
                     }
                     let start = self.locals.len();
                     self.locals.push((name.clone(), Value::text(&info.message)));

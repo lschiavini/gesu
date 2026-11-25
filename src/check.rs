@@ -762,6 +762,7 @@ impl Checker {
                 self.join(&before, &[after_body, after_handler]);
             }
             StmtKind::Discern { subject, arms } => self.discern(line, subject, arms),
+            StmtKind::Repent => {}
             StmtKind::Law { .. } | StmtKind::Kind { .. } | StmtKind::Pagan { .. } | StmtKind::Parable(_) => {}
         }
     }

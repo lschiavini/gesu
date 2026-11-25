@@ -22,7 +22,7 @@ syn keyword gesuTruth Jesus False
 syn keyword gesuHeresy True true TRUE
 syn keyword gesuConditional if otherwise discern
 syn keyword gesuRepeat while repeat times for each in break continue
-syn keyword gesuException tempt forgive sin may
+syn keyword gesuException tempt forgive sin may repent
 syn keyword gesuStatement let law give preach kind pagan baptize as
 syn keyword gesuAmen amen
 syn keyword gesuDefine parable

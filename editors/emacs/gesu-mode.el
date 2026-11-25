@@ -38,7 +38,7 @@
   '("let" "mortal" "law" "parable" "give" "amen" "if" "otherwise" "while"
     "repeat" "times" "for" "each" "in" "break" "continue" "tempt" "forgive"
     "sin" "may" "preach" "deny" "and" "or" "is" "not" "lend" "entrust"
-    "discern" "kind" "pagan" "baptize" "as")
+    "discern" "kind" "pagan" "baptize" "as" "repent")
   "The words of the language.")
 
 (defconst gesu-types

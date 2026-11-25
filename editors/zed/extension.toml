@@ -1,7 +1,7 @@
 id = "gesu"
 name = "Gesù"
 description = "Gesù language support: syntax colors and the gesu language server. There is only one Truth, Jesus."
-version = "0.1.2"
+version = "0.1.3"
 schema_version = 1
 authors = ["Lucas Schiavini"]
 repository = "https://github.com/lschiavini/gesu"
