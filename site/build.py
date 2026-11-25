@@ -119,7 +119,8 @@ def inline(text):
         part = html.escape(part, quote=False)
         part = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", part)
         part = re.sub(r"\*(.+?)\*", r"<em>\1</em>", part)
-        part = re.sub(r"(https?://[^\s<]+[^\s<.,)])", r'<a href="\1">\1</a>', part)
+        part = re.sub(r"\[([^\]]+)\]\((https?://[^)\s]+)\)", r'<a href="\2">\1</a>', part)
+        part = re.sub(r"(?<![\">])(https?://[^\s<]+[^\s<.,)])", r'<a href="\1">\1</a>', part)
         out.append(part)
     return "".join(out)
 

@@ -53,10 +53,20 @@ There is no magic in it. There is patient attention to detail.
 
 ## Install
 
-You need Rust. Then:
+Mac and Linux, one line. It downloads the binary for your machine into `~/.local/bin`:
 
 ```sh
-git clone git@github.com:lschiavini/gesu.git
+curl -fsSL https://gesu.lucas-schiavini.com/install.sh | sh
+```
+
+Windows: download `gesu-x86_64-pc-windows-msvc.zip` from the [releases](https://github.com/lschiavini/gesu/releases/latest) and put `gesu.exe` on your PATH.
+
+Nothing else is needed. Lua is inside the binary.
+
+To build it yourself, or to include the Python pagan, you need Rust:
+
+```sh
+git clone https://github.com/lschiavini/gesu.git
 cd gesu
 ./install.sh            # builds and copies gesu to ~/.local/bin
 ./install.sh --python   # the same, with the Python pagan included
@@ -66,7 +76,7 @@ Run a program:
 
 ```sh
 gesu examples/hello.gesu
-gesu check examples/hello.gesu          # examine it, do not run it
+gesu check examples/hello.gesu   # examine it, do not run it
 ```
 
 ## The first program
@@ -496,7 +506,7 @@ after the miracle: 5000
 the pagans failed us: cannot baptize as Number: the pagan gave nothing
 ```
 
-Python needs `./install.sh --python`. Then every module your Python can import is yours:
+Python needs a build from source with `./install.sh --python`. Then every module your Python can import is yours:
 
 ```lua
 pagan python "statistics" as stats
@@ -646,10 +656,10 @@ args = ["lsp"]
 
 [[grammar]]
 name = "gesu"
-source = { path = "/path/to/gesu/tree-sitter-gesu" }
+source = { git = "https://github.com/lschiavini/gesu", rev = "main", subpath = "tree-sitter-gesu" }
 ```
 
-Then `hx --grammar build`, and copy `tree-sitter-gesu/queries/highlights.scm` to `~/.config/helix/runtime/queries/gesu/`.
+Then `hx --grammar fetch`, `hx --grammar build`, and copy `tree-sitter-gesu/queries/highlights.scm` to `~/.config/helix/runtime/queries/gesu/`.
 
 ### Any other editor
 

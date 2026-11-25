@@ -247,14 +247,18 @@ main > p:last-child {
 <div class="fact"><span class="numeral">13</span><p>The binary is 1.5 megabytes and starts in under a hundredth of a second. It has 35 words and 33 built-in parables. One for each year.</p></div>
 <div class="fact"><span class="numeral">14</span><p>Every block ends with <code>amen</code>. So does every program. A file without its final <code>amen</code> does not run.</p></div>
 <h2 id="install">Install</h2>
-<p>You need Rust. Then:</p>
-<pre class="shell"><code>git clone git@github.com:lschiavini/gesu.git
+<p>Mac and Linux, one line. It downloads the binary for your machine into <code>~/.local/bin</code>:</p>
+<pre class="shell"><code>curl -fsSL https://gesu.lucas-schiavini.com/install.sh | sh</code></pre>
+<p>Windows: download <code>gesu-x86_64-pc-windows-msvc.zip</code> from the <a href="https://github.com/lschiavini/gesu/releases/latest">releases</a> and put <code>gesu.exe</code> on your PATH.</p>
+<p>Nothing else is needed. Lua is inside the binary.</p>
+<p>To build it yourself, or to include the Python pagan, you need Rust:</p>
+<pre class="shell"><code>git clone https://github.com/lschiavini/gesu.git
 cd gesu
 ./install.sh            # builds and copies gesu to ~/.local/bin
 ./install.sh --python   # the same, with the Python pagan included</code></pre>
 <p>Run a program:</p>
 <pre class="shell"><code>gesu examples/hello.gesu
-gesu check examples/hello.gesu          # examine it, do not run it</code></pre>
+gesu check examples/hello.gesu   # examine it, do not run it</code></pre>
 <h2 id="the-first-program">The first program</h2>
 <pre class="gesu"><code><span class="c">-- The feeding of the five thousand.</span>
 <span class="k">law</span> <span class="t">DISCIPLES</span> = <span class="n">12</span>
@@ -562,7 +566,7 @@ return M</code></pre>
 after the miracle: 5000
 [&quot;barley&quot;, &quot;wheat&quot;, &quot;figs&quot;]
 the pagans failed us: cannot baptize as Number: the pagan gave nothing</code></pre>
-<p>Python needs <code>./install.sh --python</code>. Then every module your Python can import is yours:</p>
+<p>Python needs a build from source with <code>./install.sh --python</code>. Then every module your Python can import is yours:</p>
 <pre class="gesu"><code><span class="k">pagan</span> python <span class="s">&quot;statistics&quot;</span> <span class="k">as</span> stats
 <span class="k">pagan</span> python <span class="s">&quot;math&quot;</span> <span class="k">as</span> math
 
@@ -662,8 +666,8 @@ args = [&quot;lsp&quot;]
 
 [[grammar]]
 name = &quot;gesu&quot;
-source = { path = &quot;/path/to/gesu/tree-sitter-gesu&quot; }</code></pre>
-<p>Then <code>hx --grammar build</code>, and copy <code>tree-sitter-gesu/queries/highlights.scm</code> to <code>~/.config/helix/runtime/queries/gesu/</code>.</p>
+source = { git = &quot;https://github.com/lschiavini/gesu&quot;, rev = &quot;main&quot;, subpath = &quot;tree-sitter-gesu&quot; }</code></pre>
+<p>Then <code>hx --grammar fetch</code>, <code>hx --grammar build</code>, and copy <code>tree-sitter-gesu/queries/highlights.scm</code> to <code>~/.config/helix/runtime/queries/gesu/</code>.</p>
 <h3 id="any-other-editor">Any other editor</h3>
 <p>If it has a client for the Language Server Protocol, point it at the command <code>gesu lsp</code> for files ending in <code>.gesu</code>. That covers Emacs (eglot or lsp-mode), Sublime Text (the LSP package), Kate, and the JetBrains editors (the LSP4IJ plugin).</p>
 <h2 id="what-ges-does-not-have">What Gesù does not have</h2>
