@@ -7,6 +7,7 @@ It uses only the standard library.
 
 import html
 import re
+import shutil
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
@@ -161,6 +162,10 @@ def render(markdown):
                 i += 1
             out.append(code_block(lang, "\n".join(block)))
             i += 1
+        elif line.startswith('<p align="center"><img'):
+            # The logo. The site serves its own copy, made in main().
+            out.append('<img class="logo" src="/logo.png" width="104" height="104" alt="Gesù">')
+            i += 1
         elif m := re.match(r"^(#{1,3}) (.*)$", line):
             level, title = len(m.group(1)), m.group(2)
             if level == 2 and sections is not None and out and not out[-1].startswith("<h1"):
@@ -213,6 +218,8 @@ PAGE = """<!doctype html>
 <meta property="og:description" content="A programming language with two booleans. One is False. The other is Jesus.">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%238f1d1d'/%3E%3Cpath d='M14 5h4v7h7v4h-7v11h-4V16H7v-4h7z' fill='%23f6efe0'/%3E%3C/svg%3E">
+<meta property="og:image" content="https://gesu-lang.com/logo.png">
+<link rel="apple-touch-icon" href="/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -316,6 +323,14 @@ h2, h3 { scroll-margin-top: 28px; }
 }
 .try:hover { background: #7a1616; transform: translateY(-2px); }
 h1, h2, h3 { font-family: "Cormorant Garamond", Georgia, serif; line-height: 1.12; }
+
+.logo {
+  display: block;
+  margin: 12vh auto 0;
+  border-radius: 22px;
+  box-shadow: 0 16px 34px -18px #4a0d0d;
+}
+.logo + h1 { padding-top: 30px; }
 
 /* The opening: name, headline, and the line about the rooster. */
 h1 {
@@ -535,6 +550,7 @@ byId.forEach((_, id) => {
 
 def main():
     content, sections = render(README.read_text(encoding="utf-8"))
+    shutil.copyfile(ROOT.parent / "editors" / "vscode" / "icon.png", ROOT / "logo.png")
     toc = "\n".join(f'<a href="#{anchor}">{html.escape(label)}</a>' for anchor, label in sections)
     page = PAGE.replace("__CONTENT__", content).replace("__TOC__", toc)
     (ROOT / "index.html").write_text(page, encoding="utf-8")

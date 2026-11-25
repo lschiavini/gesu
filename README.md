@@ -1,3 +1,5 @@
+<p align="center"><img src="editors/vscode/icon.png" width="120" alt="Gesù"></p>
+
 # Gesù
 
 ## There is only one Truth, Jesus.
