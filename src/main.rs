@@ -3,6 +3,7 @@ mod check;
 mod diag;
 mod interp;
 mod lexer;
+mod lsp;
 mod pagan;
 mod parser;
 mod types;
@@ -19,6 +20,7 @@ usage:
   gesu <file.gesu> [args...]          run a program
   gesu run <file.gesu> [args...]      run a program
   gesu check <file.gesu>              examine a program without running it
+  gesu lsp                            serve an editor (Language Server Protocol)
 ";
 
 fn main() {
@@ -48,6 +50,7 @@ fn real_main() -> i32 {
             println!("gesu {}", env!("CARGO_PKG_VERSION"));
             return 0;
         }
+        Some("lsp") => return lsp::serve(),
         Some("run") => {
             argv.remove(0);
         }

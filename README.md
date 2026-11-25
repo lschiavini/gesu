@@ -596,6 +596,31 @@ warning: the rooster crows
 
 `number`, `decimal` on a Text, `read_file`, `write_file` and `parse_json` may sin.
 
+## Your editor
+
+`gesu lsp` is a language server. Any editor that speaks the Language Server Protocol can start it and receive the checker's errors as you type, completion, and a note on hover for every word of the language.
+
+Two editors are set up for you in `editors/`.
+
+**Neovim.** Syntax colors, indentation, and the language server. With lazy.nvim:
+
+```lua
+return {
+  { dir = "~/path/to/gesu/editors/nvim", name = "gesu", lazy = false },
+}
+```
+
+Without a plugin manager, add `editors/nvim` to your `runtimepath`. The syntax and indent files work in Vim too.
+
+**VS Code and Cursor.** The same, as an extension:
+
+```sh
+editors/vscode/install.sh          # VS Code
+editors/vscode/install.sh cursor   # Cursor
+```
+
+In both, `True` is colored as an error before the checker even speaks.
+
 ## What Gesù does not have
 
 No null. No `True`. No shadowing. No implicit conversions. No lifetimes. No classes. No async. No package manager. No parables passed as values, yet.

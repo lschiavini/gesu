@@ -1,0 +1,80 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Gesù",
+  "scopeName": "source.gesu",
+  "patterns": [
+    { "include": "#comment" },
+    { "include": "#string" },
+    { "include": "#parable" },
+    { "include": "#words" },
+    { "include": "#names" },
+    { "include": "#numbers" },
+    { "include": "#operators" }
+  ],
+  "repository": {
+    "comment": {
+      "name": "comment.line.double-dash.gesu",
+      "match": "--.*$"
+    },
+    "string": {
+      "name": "string.quoted.double.gesu",
+      "begin": "\"",
+      "end": "\"",
+      "patterns": [
+        { "name": "constant.character.escape.gesu", "match": "\\\\[nt\"\\\\{}]" },
+        {
+          "name": "meta.embedded.line.gesu",
+          "begin": "\\{",
+          "end": "\\}",
+          "beginCaptures": { "0": { "name": "punctuation.section.embedded.begin.gesu" } },
+          "endCaptures": { "0": { "name": "punctuation.section.embedded.end.gesu" } },
+          "patterns": [{ "include": "$self" }]
+        }
+      ]
+    },
+    "parable": {
+      "match": "\\b(parable)\\s+([A-Za-z_]\\w*)",
+      "captures": {
+        "1": { "name": "storage.type.function.gesu" },
+        "2": { "name": "entity.name.function.gesu" }
+      }
+    },
+    "words": {
+      "patterns": [
+        { "name": "constant.language.boolean.gesu", "match": "\\b(Jesus|False)\\b" },
+        { "name": "invalid.illegal.heresy.gesu", "match": "\\b(True|true|TRUE)\\b" },
+        { "name": "constant.language.maybe.gesu", "match": "\\b(Found|Lost)\\b" },
+        {
+          "name": "keyword.control.gesu",
+          "match": "\\b(if|otherwise|discern|while|repeat|times|for|each|in|break|continue|tempt|forgive|sin|may|give|amen)\\b"
+        },
+        { "name": "keyword.other.gesu", "match": "\\b(let|law|preach|kind|pagan|baptize|as)\\b" },
+        { "name": "storage.type.function.gesu", "match": "\\bparable\\b" },
+        { "name": "storage.modifier.gesu", "match": "\\b(mortal|lend|entrust)\\b" },
+        { "name": "keyword.operator.word.gesu", "match": "\\b(deny|and|or|is|not)\\b" },
+        { "name": "support.type.gesu", "match": "\\b(Number|Decimal|Text|Truth|Maybe|Pagan|Nothing)\\b" },
+        {
+          "name": "support.function.gesu",
+          "match": "\\b(length|push|pop|get|lookup|contains|remove|keys|copy|range|sort|reverse|split|join|trim|upper|lower|replace|chars|text|number|decimal|floor|round|abs|min|max|read_file|write_file|read_line|args|parse_json|to_json)(?=\\s*\\()"
+        }
+      ]
+    },
+    "names": {
+      "patterns": [
+        { "name": "variable.other.constant.gesu", "match": "\\b[A-Z][A-Z0-9_]+\\b" },
+        { "name": "entity.name.type.gesu", "match": "\\b[A-Z]\\w*\\b" },
+        { "name": "entity.name.function.gesu", "match": "\\b[a-z_]\\w*(?=\\s*\\()" }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        { "name": "constant.numeric.decimal.gesu", "match": "\\b\\d[0-9_]*\\.\\d+\\b" },
+        { "name": "constant.numeric.integer.gesu", "match": "\\b\\d[0-9_]*\\b" }
+      ]
+    },
+    "operators": {
+      "name": "keyword.operator.gesu",
+      "match": "->|<=|>=|[-+*/%<>=]"
+    }
+  }
+}

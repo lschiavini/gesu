@@ -498,7 +498,17 @@ fn json_string(c: &[char], pos: &mut usize) -> Result<String, String> {
                     'u' => {
                         let hex: String = c.iter().skip(*pos).take(4).collect();
                         *pos += 4;
-                        let code = u32::from_str_radix(&hex, 16).map_err(|_| "bad \\u escape in JSON".to_string())?;
+                        let mut code = u32::from_str_radix(&hex, 16).map_err(|_| "bad \\u escape in JSON".to_string())?;
+                        // Characters beyond the basic plane arrive as two halves.
+                        if (0xD800..0xDC00).contains(&code) && c.get(*pos) == Some(&'\\') && c.get(*pos + 1) == Some(&'u') {
+                            let low: String = c.iter().skip(*pos + 2).take(4).collect();
+                            if let Ok(low) = u32::from_str_radix(&low, 16) {
+                                if (0xDC00..0xE000).contains(&low) {
+                                    code = 0x10000 + ((code - 0xD800) << 10) + (low - 0xDC00);
+                                    *pos += 6;
+                                }
+                            }
+                        }
                         out.push(char::from_u32(code).unwrap_or('\u{fffd}'));
                     }
                     other => out.push(other),
