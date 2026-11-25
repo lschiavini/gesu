@@ -634,17 +634,38 @@ forgiven: element 2: cannot baptize as Number: the pagan gave the Text &quot;thr
 <div class="table"><table><thead><tr><th>For</th><th>Parables</th></tr></thead><tbody><tr><td>Multitudes</td><td><code>length</code> <code>push</code> <code>pop</code> <code>get</code> <code>contains</code> <code>remove</code> <code>sort</code> <code>reverse</code> <code>range</code> <code>copy</code></td></tr><tr><td>Maps</td><td><code>length</code> <code>lookup</code> <code>contains</code> <code>remove</code> <code>keys</code></td></tr><tr><td>Text</td><td><code>length</code> <code>split</code> <code>join</code> <code>trim</code> <code>upper</code> <code>lower</code> <code>replace</code> <code>chars</code> <code>contains</code> <code>text</code></td></tr><tr><td>Numbers</td><td><code>number</code> <code>decimal</code> <code>floor</code> <code>round</code> <code>abs</code> <code>min</code> <code>max</code></td></tr><tr><td>The world</td><td><code>read_file</code> <code>write_file</code> <code>read_line</code> <code>args</code></td></tr><tr><td>JSON</td><td><code>parse_json</code> <code>to_json</code></td></tr></tbody></table></div>
 <p><code>number</code>, <code>decimal</code> on a Text, <code>read_file</code>, <code>write_file</code> and <code>parse_json</code> may sin.</p>
 <h2 id="your-editor">Your editor</h2>
-<p><code>gesu lsp</code> is a language server. Any editor that speaks the Language Server Protocol can start it and receive the checker's errors as you type, completion, and a note on hover for every word of the language.</p>
-<p>Two editors are set up for you in <code>editors/</code>.</p>
-<p><strong>Neovim.</strong> Syntax colors, indentation, and the language server. With lazy.nvim:</p>
+<p>Gesù gives an editor three things, and none of them is tied to one editor.</p>
+<div class="table"><table><thead><tr><th>Piece</th><th>What it gives</th><th>Where it lives</th></tr></thead><tbody><tr><td>Language server</td><td>errors as you type, completion, a note on hover</td><td><code>gesu lsp</code>, inside the binary</td></tr><tr><td>Tree-sitter grammar</td><td>syntax colors in Neovim, Helix, Zed, Emacs</td><td><code>tree-sitter-gesu/</code></td></tr><tr><td>TextMate grammar</td><td>syntax colors in VS Code, Cursor, JetBrains, Sublime</td><td><code>editors/vscode/syntaxes/</code></td></tr></tbody></table></div>
+<p>In every one of them, <code>True</code> is colored as an error before the checker even speaks.</p>
+<h3 id="neovim">Neovim</h3>
+<p>Colors, indentation and the language server. With lazy.nvim:</p>
 <pre class="shell"><code>return {
   { dir = &quot;~/path/to/gesu/editors/nvim&quot;, name = &quot;gesu&quot;, lazy = false },
 }</code></pre>
-<p>Without a plugin manager, add <code>editors/nvim</code> to your <code>runtimepath</code>. The syntax and indent files work in Vim too.</p>
-<p><strong>VS Code and Cursor.</strong> The same, as an extension:</p>
+<p>Run <code>editors/nvim/build-parser.sh</code> once to compile the tree-sitter parser. Without it, a plain Vim syntax file does the coloring, and that file works in Vim too.</p>
+<h3 id="vs-code-and-cursor">VS Code and Cursor</h3>
 <pre class="shell"><code>editors/vscode/install.sh          # VS Code
 editors/vscode/install.sh cursor   # Cursor</code></pre>
-<p>In both, <code>True</code> is colored as an error before the checker even speaks.</p>
+<h3 id="helix">Helix</h3>
+<p>In <code>~/.config/helix/languages.toml</code>:</p>
+<pre class="shell"><code>[[language]]
+name = &quot;gesu&quot;
+scope = &quot;source.gesu&quot;
+file-types = [&quot;gesu&quot;]
+comment-token = &quot;--&quot;
+indent = { tab-width = 4, unit = &quot;    &quot; }
+language-servers = [&quot;gesu&quot;]
+
+[language-server.gesu]
+command = &quot;gesu&quot;
+args = [&quot;lsp&quot;]
+
+[[grammar]]
+name = &quot;gesu&quot;
+source = { path = &quot;/path/to/gesu/tree-sitter-gesu&quot; }</code></pre>
+<p>Then <code>hx --grammar build</code>, and copy <code>tree-sitter-gesu/queries/highlights.scm</code> to <code>~/.config/helix/runtime/queries/gesu/</code>.</p>
+<h3 id="any-other-editor">Any other editor</h3>
+<p>If it has a client for the Language Server Protocol, point it at the command <code>gesu lsp</code> for files ending in <code>.gesu</code>. That covers Emacs (eglot or lsp-mode), Sublime Text (the LSP package), Kate, and the JetBrains editors (the LSP4IJ plugin).</p>
 <h2 id="what-ges-does-not-have">What Gesù does not have</h2>
 <p>No null. No <code>True</code>. No shadowing. No implicit conversions. No lifetimes. No classes. No async. No package manager. No parables passed as values, yet.</p>
 <h2 id="what-is-in-this-version">What is in this version</h2>

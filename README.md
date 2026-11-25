@@ -598,11 +598,19 @@ warning: the rooster crows
 
 ## Your editor
 
-`gesu lsp` is a language server. Any editor that speaks the Language Server Protocol can start it and receive the checker's errors as you type, completion, and a note on hover for every word of the language.
+Gesù gives an editor three things, and none of them is tied to one editor.
 
-Two editors are set up for you in `editors/`.
+| Piece | What it gives | Where it lives |
+|---|---|---|
+| Language server | errors as you type, completion, a note on hover | `gesu lsp`, inside the binary |
+| Tree-sitter grammar | syntax colors in Neovim, Helix, Zed, Emacs | `tree-sitter-gesu/` |
+| TextMate grammar | syntax colors in VS Code, Cursor, JetBrains, Sublime | `editors/vscode/syntaxes/` |
 
-**Neovim.** Syntax colors, indentation, and the language server. With lazy.nvim:
+In every one of them, `True` is colored as an error before the checker even speaks.
+
+### Neovim
+
+Colors, indentation and the language server. With lazy.nvim:
 
 ```lua
 return {
@@ -610,16 +618,42 @@ return {
 }
 ```
 
-Without a plugin manager, add `editors/nvim` to your `runtimepath`. The syntax and indent files work in Vim too.
+Run `editors/nvim/build-parser.sh` once to compile the tree-sitter parser. Without it, a plain Vim syntax file does the coloring, and that file works in Vim too.
 
-**VS Code and Cursor.** The same, as an extension:
+### VS Code and Cursor
 
 ```sh
 editors/vscode/install.sh          # VS Code
 editors/vscode/install.sh cursor   # Cursor
 ```
 
-In both, `True` is colored as an error before the checker even speaks.
+### Helix
+
+In `~/.config/helix/languages.toml`:
+
+```toml
+[[language]]
+name = "gesu"
+scope = "source.gesu"
+file-types = ["gesu"]
+comment-token = "--"
+indent = { tab-width = 4, unit = "    " }
+language-servers = ["gesu"]
+
+[language-server.gesu]
+command = "gesu"
+args = ["lsp"]
+
+[[grammar]]
+name = "gesu"
+source = { path = "/path/to/gesu/tree-sitter-gesu" }
+```
+
+Then `hx --grammar build`, and copy `tree-sitter-gesu/queries/highlights.scm` to `~/.config/helix/runtime/queries/gesu/`.
+
+### Any other editor
+
+If it has a client for the Language Server Protocol, point it at the command `gesu lsp` for files ending in `.gesu`. That covers Emacs (eglot or lsp-mode), Sublime Text (the LSP package), Kate, and the JetBrains editors (the LSP4IJ plugin).
 
 ## What Gesù does not have
 

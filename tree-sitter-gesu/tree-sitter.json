@@ -1,0 +1,18 @@
+{
+  "grammars": [
+    {
+      "name": "gesu",
+      "camelcase": "Gesu",
+      "scope": "source.gesu",
+      "path": ".",
+      "file-types": ["gesu"],
+      "highlights": "queries/highlights.scm"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "UNLICENSED",
+    "description": "Gesù grammar for tree-sitter",
+    "authors": [{ "name": "Lucas Schiavini" }]
+  }
+}
