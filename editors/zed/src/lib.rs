@@ -16,7 +16,7 @@ impl zed::Extension for GesuExtension {
     ) -> Result<zed::Command> {
         let command = worktree.which("gesu").ok_or_else(|| {
             "gesu is not on your PATH. Install it with: \
-             curl -fsSL https://gesu.lucas-schiavini.com/install.sh | sh"
+             curl -fsSL https://gesu-lang.com/install.sh | sh"
                 .to_string()
         })?;
         Ok(zed::Command { command, args: vec!["lsp".to_string()], env: Default::default() })

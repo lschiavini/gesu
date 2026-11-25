@@ -56,7 +56,7 @@ There is no magic in it. There is patient attention to detail.
 Mac and Linux, one line. It downloads the binary for your machine into `~/.local/bin`:
 
 ```sh
-curl -fsSL https://gesu.lucas-schiavini.com/install.sh | sh
+curl -fsSL https://gesu-lang.com/install.sh | sh
 ```
 
 Windows: download `gesu-x86_64-pc-windows-msvc.zip` from the [releases](https://github.com/lschiavini/gesu/releases/latest) and put `gesu.exe` on your PATH.

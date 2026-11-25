@@ -52,6 +52,6 @@
     "url": "https://github.com/lschiavini/gesu.git",
     "directory": "editors/vscode"
   },
-  "homepage": "https://gesu.lucas-schiavini.com",
+  "homepage": "https://gesu-lang.com",
   "icon": "icon.png"
 }

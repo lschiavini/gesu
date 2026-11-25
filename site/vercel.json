@@ -1,0 +1,16 @@
+{
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "gesu.lucas-schiavini.com" }],
+      "destination": "https://gesu-lang.com/$1",
+      "permanent": true
+    },
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "www.gesu-lang.com" }],
+      "destination": "https://gesu-lang.com/$1",
+      "permanent": true
+    }
+  ]
+}

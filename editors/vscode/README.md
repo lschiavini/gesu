@@ -10,7 +10,7 @@ This extension gives `.gesu` files:
 - a note on hover for every word of the language
 - indentation that follows `amen`
 
-Colors work alone. Everything else comes from the `gesu` binary, which the extension starts as `gesu lsp`. Install it with `curl -fsSL https://gesu.lucas-schiavini.com/install.sh | sh`. If the binary is not on your PATH or in `~/.local/bin`, set `gesu.path` in the settings.
+Colors work alone. Everything else comes from the `gesu` binary, which the extension starts as `gesu lsp`. Install it with `curl -fsSL https://gesu-lang.com/install.sh | sh`. If the binary is not on your PATH or in `~/.local/bin`, set `gesu.path` in the settings.
 
 ## Install from this folder
 

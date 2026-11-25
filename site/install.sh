@@ -1,6 +1,6 @@
 #!/bin/sh
 # Installs the latest gesu for this machine into ~/.local/bin.
-#   curl -fsSL https://gesu.lucas-schiavini.com/install.sh | sh
+#   curl -fsSL https://gesu-lang.com/install.sh | sh
 set -e
 
 case "$(uname -s)" in
