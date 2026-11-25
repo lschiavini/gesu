@@ -270,7 +270,7 @@ impl Interp {
                 Err(Flow::Sin(info)) => {
                     self.forgiven += 1;
                     if self.forgiven > FORGIVENESS {
-                        let message = format!("seventy times seven sins were forgiven, and this one is not: {}", info.message);
+                        let message = format!("Matthew 18:22: forgive can only be run {FORGIVENESS} times (unforgiven: {})", info.message);
                         return Err(Flow::Mortal(SinInfo { message, ..info }));
                     }
                     let start = self.locals.len();

@@ -31,7 +31,7 @@ There is no magic in it. There is patient attention to detail.
 
 **4.** A parable that can fail must say so in its signature: `may sin`. Call it without `tempt ... forgive`, and without confessing in turn, and the program does not compile.
 
-**5.** Gesù forgives 490 sins per run. That is seventy times seven. The 491st is not forgiven, and the program dies.
+**5.** Gesù forgives 490 sins per run, as Matthew 18:22 instructs. The 491st is not forgiven, and the program dies.
 
 **6.** There is no null. A value that may be absent is `Found(x)` or `Lost`, and `discern` makes you face both.
 
@@ -43,7 +43,7 @@ There is no magic in it. There is patient attention to detail.
 
 **10.** There are no implicit conversions. A Number and a Decimal do not mix until you say how.
 
-**11.** Deny Jesus three times in one program and the rooster crows. It is a warning. Under `--pharisee` it is an error.
+**11.** Deny Jesus three times in one program and the rooster crows. It is a warning, and the program still runs.
 
 **12.** The whole of Lua is compiled into the binary. Python can be added with one flag. Both are pagans: whatever they return must be baptized before Gesù will touch it.
 
@@ -67,7 +67,6 @@ Run a program:
 ```sh
 gesu examples/hello.gesu
 gesu check examples/hello.gesu          # examine it, do not run it
-gesu run --pharisee examples/hello.gesu # strict: warnings are errors, no work on the Sabbath
 ```
 
 ## The first program
@@ -294,6 +293,37 @@ sin: divided by nothing
    = the wages of sin is death
 ```
 
+### Seventy times seven
+
+In Matthew 18:21-22, Peter asks how often he must forgive his brother: "Up to seven times?" Jesus answers: "I do not say to you, up to seven times, but up to seventy times seven."
+
+Seventy times seven is 490, and Gesù keeps the count. Each time a `forgive` block catches a sin, the count goes up by one. It never goes down and it is shared by the whole run. The 491st sin is not forgiven:
+
+```
+let mortal forgiven = 0
+repeat 500 times
+    tempt
+        sin "again"
+    forgive trespass
+        forgiven = forgiven + 1
+    amen
+amen
+amen
+```
+
+```
+mortal sin: Matthew 18:22: forgive can only be run 490 times (unforgiven: again)
+  --> seventy.gesu:4
+   |
+ 4 |         sin "again"
+   |
+   = the wages of sin is death
+```
+
+What this means for you: `tempt ... forgive` is for the rare failure. A program that expects to fail more than 490 times, such as one reading 10,000 lines where many are bad, should check before it acts (`get`, `lookup` and `contains` give an answer without sinning) and keep `forgive` for what it could not foresee.
+
+### Mortal sins
+
 Some sins are mortal. Nothing forgives them: an index past the end of a multitude, a missing key, a Number grown past 9223372036854775807, a parable calling itself 2000 deep. For the first two there are safe forms, `get` and `lookup`, which give a `Maybe`.
 
 ## Kinds
@@ -350,6 +380,55 @@ and yet forgiven
 Methuselah lived 969 years
 Noah lived 950 years
 Adam's age is not written here
+```
+
+A `discern` takes as many cases as the kind has. Here are five, from the parable of the sower. A case may carry values, and its branch may be one line or several:
+
+```
+kind Soil
+    Path
+    Rock(Number)
+    Thorns(Number, Text)
+    Good(Number)
+    Unsown
+amen
+
+parable harvest(soil: Soil) -> Text
+    discern soil
+        Path: give "the birds ate the seed"
+        Rock(days): give "it sprang up and withered in {days} days"
+        Thorns(days, weed):
+            let choked = days * 2
+            give "choked by {weed} after {choked} days"
+        Good(yield): give "it bore fruit, {yield} times over"
+        Unsown: give "nothing was sown"
+    amen
+amen
+
+let field = [Path, Rock(3), Thorns(20, "thistles"), Good(100), Unsown]
+for each soil in field
+    preach harvest(soil)
+amen
+amen
+```
+
+```
+the birds ate the seed
+it sprang up and withered in 3 days
+choked by thistles after 40 days
+it bore fruit, 100 times over
+nothing was sown
+```
+
+Delete the `Good` line and nothing runs:
+
+```
+error: `discern` must face every case; missing `Good`
+  --> discern.gesu:11
+   |
+11 |     discern soil
+   |
+   = the value is a Soil
 ```
 
 The types:
@@ -502,9 +581,6 @@ error: unknown name `None`
 
 warning: the rooster crows
    = Jesus has been denied three times (lines 1, 2, 3)
-
-error: it is the Sabbath
-   = a pharisee does no work on the seventh day
 ```
 
 ## The 33 built-in parables

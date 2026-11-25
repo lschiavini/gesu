@@ -17,10 +17,8 @@ const HELP: &str = "Gesù: there is only one Truth, Jesus.
 
 usage:
   gesu <file.gesu> [args...]          run a program
-  gesu run [--pharisee] <file.gesu>   run a program
-  gesu check [--pharisee] <file.gesu> examine a program without running it
-
-  --pharisee   strict mode: warnings become errors, and no work on the Sabbath
+  gesu run <file.gesu> [args...]      run a program
+  gesu check <file.gesu>              examine a program without running it
 ";
 
 fn main() {
@@ -38,18 +36,9 @@ fn paint(label: &str, code: &str) -> String {
     }
 }
 
-fn is_sabbath() -> bool {
-    let day = std::env::var("GESU_TODAY").ok().or_else(|| {
-        let lua = mlua::Lua::new();
-        lua.load("return os.date('%A')").eval::<String>().ok()
-    });
-    day.is_some_and(|d| d.eq_ignore_ascii_case("saturday"))
-}
-
 fn real_main() -> i32 {
     let mut argv: Vec<String> = std::env::args().skip(1).collect();
     let mut check_only = false;
-    let mut pharisee = false;
     match argv.first().map(|s| s.as_str()) {
         None | Some("help") | Some("--help") | Some("-h") => {
             print!("{HELP}");
@@ -67,10 +56,6 @@ fn real_main() -> i32 {
             argv.remove(0);
         }
         _ => {}
-    }
-    while argv.first().is_some_and(|a| a == "--pharisee") {
-        pharisee = true;
-        argv.remove(0);
     }
     if argv.is_empty() {
         eprint!("{HELP}");
@@ -110,14 +95,6 @@ fn real_main() -> i32 {
     let mut checker = check::Checker::new();
     checker.program(&stmts);
     diags.append(&mut checker.diags);
-    if pharisee {
-        for d in &mut diags {
-            if d.level == Level::Warning {
-                d.level = Level::Error;
-                d.notes.push("a pharisee keeps every letter of the law: warnings are errors".into());
-            }
-        }
-    }
     diags.sort_by_key(|d| d.line);
     for d in &diags {
         report(d);
@@ -131,13 +108,6 @@ fn real_main() -> i32 {
     if check_only {
         println!("{file} is without fault.");
         return 0;
-    }
-    if pharisee && is_sabbath() {
-        let d = Diag::error(0, "it is the Sabbath")
-            .note("a pharisee does no work on the seventh day")
-            .note("hint: come back tomorrow, or run without `--pharisee`");
-        report(&d);
-        return 1;
     }
 
     let dir = Path::new(&file).parent().filter(|p| !p.as_os_str().is_empty()).unwrap_or(Path::new(".")).to_path_buf();

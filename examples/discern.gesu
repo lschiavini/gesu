@@ -1,0 +1,26 @@
+-- One `discern`, five cases. Leave one out and the program is refused.
+kind Soil
+    Path
+    Rock(Number)
+    Thorns(Number, Text)
+    Good(Number)
+    Unsown
+amen
+
+parable harvest(soil: Soil) -> Text
+    discern soil
+        Path: give "the birds ate the seed"
+        Rock(days): give "it sprang up and withered in {days} days"
+        Thorns(days, weed):
+            let choked = days * 2
+            give "choked by {weed} after {choked} days"
+        Good(yield): give "it bore fruit, {yield} times over"
+        Unsown: give "nothing was sown"
+    amen
+amen
+
+let field = [Path, Rock(3), Thorns(20, "thistles"), Good(100), Unsown]
+for each soil in field
+    preach harvest(soil)
+amen
+amen
