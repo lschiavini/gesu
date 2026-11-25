@@ -1,0 +1,3 @@
+# GitHub does not know Gesù. Lua is the nearest language it can color:
+# the same comments, texts and numbers. Kept out of the language statistics.
+*.gesu linguist-language=Lua linguist-detectable=false

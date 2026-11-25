@@ -71,7 +71,7 @@ gesu check examples/hello.gesu          # examine it, do not run it
 
 ## The first program
 
-```
+```lua
 -- The feeding of the five thousand.
 law DISCIPLES = 12
 
@@ -136,7 +136,7 @@ The words you just read:
 
 Numbers, decimals, texts and truths are copied. Multitudes (lists), maps and kinds are owned: there is one owner at a time.
 
-```
+```lua
 parable count(names: lend [Text]) -> Number
     give length(names)
 amen
@@ -186,7 +186,7 @@ Three ways to pass a value:
 
 Now steal something:
 
-```
+```lua
 let apostles = ["Peter", "Andrew"]
 let twelve = apostles
 preach apostles
@@ -215,7 +215,7 @@ error: no one can serve two masters
 
 ## Sins: confess them or be refused
 
-```
+```lua
 parable divide(a: Number, b: Number) -> Number may sin
     if b is 0
         sin "divided by nothing"
@@ -299,7 +299,7 @@ In Matthew 18:21-22, Peter asks how often he must forgive his brother: "Up to se
 
 Seventy times seven is 490, and Gesù keeps the count. Each time a `forgive` block catches a sin, the count goes up by one. It never goes down and it is shared by the whole run. The 491st sin is not forgiven:
 
-```
+```lua
 let mortal forgiven = 0
 repeat 500 times
     tempt
@@ -330,7 +330,7 @@ Some sins are mortal. Nothing forgives them: an index past the end of a multitud
 
 Every creature after its kind. A kind is either a record with named fields or a set of cases.
 
-```
+```lua
 kind Disciple
     name: Text
     denials: Number
@@ -384,7 +384,7 @@ Adam's age is not written here
 
 A `discern` takes as many cases as the kind has. Here are five, from the parable of the sower. A case may carry values, and its branch may be one line or several:
 
-```
+```lua
 kind Soil
     Path
     Rock(Number)
@@ -469,7 +469,7 @@ function M.baskets() return { "barley", "wheat", "figs" } end
 return M
 ```
 
-```
+```lua
 pagan lua "inventory.lua" as inventory
 
 parable stock(item: Text) -> Number may sin
@@ -498,7 +498,7 @@ the pagans failed us: cannot baptize as Number: the pagan gave nothing
 
 Python needs `./install.sh --python`. Then every module your Python can import is yours:
 
-```
+```lua
 pagan python "statistics" as stats
 pagan python "math" as math
 
@@ -525,7 +525,7 @@ the pagans failed us: StatisticsError: mean requires at least one data point
 
 JSON is pagan data. It is baptized straight into your kinds:
 
-```
+```lua
 kind Apostle
     name: Text
     fisherman: Truth

@@ -96,8 +96,10 @@ def highlight_report(text):
 
 def code_block(lang, text):
     is_report = re.search(r"^(error|warning|sin|mortal sin): ", text, re.M)
-    is_gesu = not lang and re.search(r"^\s*(let|law|parable|preach|kind|pagan|discern|tempt)\b", text, re.M)
-    if lang:
+    # GitHub cannot color Gesù, so the README labels Gesù code as Lua, the
+    # nearest language it knows. Here it gets its real colors back.
+    is_gesu = lang in ("", "lua") and re.search(r"^\s*(let|law|parable|preach|kind|pagan|discern|tempt)\b", text, re.M)
+    if lang and not is_gesu:
         return f'<pre class="shell"><code>{html.escape(text)}</code></pre>'
     if is_report:
         return f'<pre class="report"><code>{highlight_report(text)}</code></pre>'
