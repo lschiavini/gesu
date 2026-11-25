@@ -8,7 +8,7 @@ repository = "https://github.com/lschiavini/gesu"
 
 [grammars.gesu]
 repository = "https://github.com/lschiavini/gesu"
-rev = "172b173eadc97c6df2f3aa9ad46860f5d0479882"
+rev = "26b82617077db18905ca976cfcae57cd12b26a1b"
 path = "tree-sitter-gesu"
 
 [language_servers.gesu]
