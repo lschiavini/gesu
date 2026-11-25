@@ -1,39 +1,53 @@
-# Gesù for VS Code
+# Gesù Language
 
 There is only one Truth, Jesus.
 
-This extension gives `.gesu` files:
+[Gesù](https://gesu-lang.com) (Italian for Jesus) is a programming language with two booleans. One is `False`. The other is `Jesus`. This extension is what you need to write it in VS Code.
 
-- syntax colors, with `True` marked as an error
-- the checker's errors as you type: `Thou shalt not steal`, unconfessed sins, buried talents
-- completion of the language's words, the built-in parables and the names in the file
-- a note on hover for every word of the language
-- indentation that follows `amen`
+```
+parable divide(a: Number, b: Number) -> Number may sin
+    if b is 0
+        sin "divided by nothing"
+    amen
+    give a / b
+amen
 
-Colors work alone. Everything else comes from the `gesu` binary, which the extension starts as `gesu lsp`. Install it with `curl -fsSL https://gesu-lang.com/install.sh | sh`. If the binary is not on your PATH or in `~/.local/bin`, set `gesu.path` in the settings.
-
-## Install from this folder
-
-```sh
-./install.sh          # VS Code
-./install.sh cursor   # Cursor
+tempt
+    preach divide(10, 0)
+forgive trespass
+    preach "forgiven: {trespass}"
+amen
+amen
 ```
 
-## Publish
+## What you get
 
-The `publisher` in `package.json` must be the name of your publisher.
+- **Syntax colors** for `.gesu` files. `True` is colored as an error.
+- **Errors as you type**, straight from the language's checker: `Thou shalt not steal`, unconfessed sins, buried talents.
+- **Completion** of the language's words, the built-in parables, and the names in your file.
+- **A note on hover** for every word of the language.
+- **Indentation** that follows `amen`.
 
-VS Code Marketplace:
+## Before you start
 
-1. Create a publisher at https://marketplace.visualstudio.com/manage.
-2. Create a Personal Access Token in Azure DevOps with the scope "Marketplace: Manage".
-3. `npx @vscode/vsce login <publisher>` and paste the token.
-4. `npx @vscode/vsce publish`.
+The colors work alone. Everything else needs the `gesu` program on your machine.
 
-Open VSX, which Cursor and VSCodium read:
+Mac and Linux:
 
-1. Create an account and a token at https://open-vsx.org, and a namespace with the publisher's name.
-2. `npx ovsx publish gesu.vsix -p <token>`.
+```sh
+curl -fsSL https://gesu-lang.com/install.sh | sh
+```
 
-The steps change now and then. The current ones are at
-https://code.visualstudio.com/api/working-with-extensions/publishing-extension.
+Windows: download `gesu-x86_64-pc-windows-msvc.zip` from the [releases](https://github.com/lschiavini/gesu/releases/latest) and put `gesu.exe` on your PATH.
+
+Later, `gesu update` fetches the newest version.
+
+## Settings
+
+- `gesu.path`: where the `gesu` program is. Set it only if `gesu` is not on your PATH and not in `~/.local/bin`.
+
+## Learn the language
+
+The whole language, with examples, is on one page: [gesu-lang.com](https://gesu-lang.com).
+
+Source and issues: [github.com/lschiavini/gesu](https://github.com/lschiavini/gesu).

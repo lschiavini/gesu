@@ -7,6 +7,7 @@ mod lsp;
 mod pagan;
 mod parser;
 mod types;
+mod update;
 mod value;
 
 use diag::{render, render_diag, Diag, Level};
@@ -21,6 +22,7 @@ usage:
   gesu run <file.gesu> [args...]      run a program
   gesu check <file.gesu>              examine a program without running it
   gesu lsp                            serve an editor (Language Server Protocol)
+  gesu update                         replace this gesu with the latest release
 ";
 
 fn main() {
@@ -51,6 +53,7 @@ fn real_main() -> i32 {
             return 0;
         }
         Some("lsp") => return lsp::serve(),
+        Some("update") => return update::update(argv.iter().any(|a| a == "--force")),
         Some("run") => {
             argv.remove(0);
         }

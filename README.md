@@ -83,6 +83,12 @@ gesu examples/hello.gesu
 gesu check examples/hello.gesu   # examine it, do not run it
 ```
 
+Later, to get the newest version:
+
+```sh
+gesu update
+```
+
 ## The first program
 
 ```lua
