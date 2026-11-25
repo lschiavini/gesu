@@ -1,0 +1,11 @@
+// Paste the "gesu" entry into the "clients" of your LSP settings:
+// Preferences > Package Settings > LSP > Settings
+{
+    "clients": {
+        "gesu": {
+            "enabled": true,
+            "command": ["gesu", "lsp"],
+            "selector": "source.gesu"
+        }
+    }
+}

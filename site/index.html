@@ -35,11 +35,82 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
-main {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 0 28px 120px;
+.layout {
+  display: grid;
+  grid-template-columns: 210px minmax(0, 800px);
+  justify-content: center;
+  gap: 64px;
 }
+main {
+  min-width: 0;
+  padding: 0 28px 140px;
+}
+h2, h3 { scroll-margin-top: 28px; }
+
+/* The contents, at the side. */
+.contents {
+  position: sticky;
+  top: 0;
+  align-self: start;
+  max-height: 100vh;
+  overflow-y: auto;
+  padding: 44px 0 40px 4px;
+  display: flex;
+  flex-direction: column;
+  font-size: 16.5px;
+  line-height: 1.3;
+}
+.contents a {
+  padding: 7px 0 7px 14px;
+  border-left: 2px solid var(--rule);
+  color: var(--soft);
+  text-decoration: none;
+  transition: color 0.15s, border-color 0.15s;
+}
+.contents a:hover { color: var(--ink); }
+.contents a.here {
+  border-left-color: var(--rubric);
+  color: var(--rubric);
+  font-weight: 600;
+}
+.contents .home {
+  margin-bottom: 14px;
+  padding-left: 0;
+  border: 0;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--rubric);
+}
+.contents .source {
+  margin-top: 18px;
+  padding-left: 0;
+  border: 0;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* Always at hand: the way to the install section. */
+.try {
+  position: fixed;
+  right: 28px;
+  bottom: 28px;
+  z-index: 10;
+  padding: 13px 26px 14px;
+  border-radius: 999px;
+  background: var(--rubric);
+  color: var(--parchment);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 23px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  box-shadow: 0 0 0 1px #b8924d inset, 0 12px 28px -10px #4a0d0d;
+  transition: transform 0.15s, background 0.15s;
+}
+.try:hover { background: #7a1616; transform: translateY(-2px); }
 h1, h2, h3 { font-family: "Cormorant Garamond", Georgia, serif; line-height: 1.12; }
 
 /* The opening: name, headline, and the line about the rooster. */
@@ -206,7 +277,12 @@ main > p:last-child {
   color: var(--rubric);
 }
 
+@media (max-width: 1080px) {
+  .layout { display: block; max-width: 856px; margin: 0 auto; }
+  .contents { display: none; }
+}
 @media (max-width: 600px) {
+  .try { right: 16px; bottom: 16px; font-size: 20px; padding: 11px 22px 12px; }
   body { font-size: 19px; }
   main { padding: 0 18px 80px; }
   h2 { font-size: 32px; margin-top: 70px; }
@@ -217,6 +293,23 @@ main > p:last-child {
 </style>
 </head>
 <body>
+<div class="layout">
+<nav class="contents" aria-label="Contents">
+<a class="home" href="#ges">Gesù</a>
+<a href="#what-makes-ges-the-most-examined-language-you-can-install-today">The 14 facts</a>
+<a href="#install">Install</a>
+<a href="#the-first-program">The first program</a>
+<a href="#ownership-give-lend-entrust">Ownership</a>
+<a href="#sins-confess-them-or-be-refused">Sins</a>
+<a href="#kinds">Kinds</a>
+<a href="#pagans-lua-python-and-json">Pagans</a>
+<a href="#the-other-errors-so-you-know-them-when-you-meet-them">The other errors</a>
+<a href="#the-33-built-in-parables">The 33 built-in parables</a>
+<a href="#your-editor">Your editor</a>
+<a href="#what-ges-does-not-have">What Gesù does not have</a>
+<a href="#what-is-in-this-version">What is in this version</a>
+<a class="source" href="https://github.com/lschiavini/gesu">Source on GitHub</a>
+</nav>
 <main>
 <h1 id="ges">Gesù</h1>
 <h2 id="there-is-only-one-truth-jesus">There is only one Truth, Jesus.</h2>
@@ -638,38 +731,49 @@ forgiven: element 2: cannot baptize as Number: the pagan gave the Text &quot;thr
 <div class="table"><table><thead><tr><th>For</th><th>Parables</th></tr></thead><tbody><tr><td>Multitudes</td><td><code>length</code> <code>push</code> <code>pop</code> <code>get</code> <code>contains</code> <code>remove</code> <code>sort</code> <code>reverse</code> <code>range</code> <code>copy</code></td></tr><tr><td>Maps</td><td><code>length</code> <code>lookup</code> <code>contains</code> <code>remove</code> <code>keys</code></td></tr><tr><td>Text</td><td><code>length</code> <code>split</code> <code>join</code> <code>trim</code> <code>upper</code> <code>lower</code> <code>replace</code> <code>chars</code> <code>contains</code> <code>text</code></td></tr><tr><td>Numbers</td><td><code>number</code> <code>decimal</code> <code>floor</code> <code>round</code> <code>abs</code> <code>min</code> <code>max</code></td></tr><tr><td>The world</td><td><code>read_file</code> <code>write_file</code> <code>read_line</code> <code>args</code></td></tr><tr><td>JSON</td><td><code>parse_json</code> <code>to_json</code></td></tr></tbody></table></div>
 <p><code>number</code>, <code>decimal</code> on a Text, <code>read_file</code>, <code>write_file</code> and <code>parse_json</code> may sin.</p>
 <h2 id="your-editor">Your editor</h2>
-<p>Gesù gives an editor three things, and none of them is tied to one editor.</p>
-<div class="table"><table><thead><tr><th>Piece</th><th>What it gives</th><th>Where it lives</th></tr></thead><tbody><tr><td>Language server</td><td>errors as you type, completion, a note on hover</td><td><code>gesu lsp</code>, inside the binary</td></tr><tr><td>Tree-sitter grammar</td><td>syntax colors in Neovim, Helix, Zed, Emacs</td><td><code>tree-sitter-gesu/</code></td></tr><tr><td>TextMate grammar</td><td>syntax colors in VS Code, Cursor, JetBrains, Sublime</td><td><code>editors/vscode/syntaxes/</code></td></tr></tbody></table></div>
+<p>Install <code>gesu</code> first. Every editor below starts it as <code>gesu lsp</code>, a language server: it gives the checker's errors as you type, completion, and a note on hover for every word of the language. Colors come from a grammar made for each family of editors.</p>
+<div class="table"><table><thead><tr><th>Editor</th><th>Colors</th><th>Errors as you type</th><th>Get it</th></tr></thead><tbody><tr><td>VS Code</td><td>yes</td><td>yes</td><td><a href="https://marketplace.visualstudio.com/items?itemName=LucasSchiavini.gesu-lang">Marketplace</a></td></tr><tr><td>Cursor, VSCodium</td><td>yes</td><td>yes</td><td><a href="https://github.com/lschiavini/gesu/tree/main/editors/vscode">editors/vscode</a></td></tr><tr><td>Neovim</td><td>yes, tree-sitter</td><td>yes</td><td><a href="https://github.com/lschiavini/gesu/tree/main/editors/nvim">editors/nvim</a></td></tr><tr><td>Zed</td><td>yes, tree-sitter</td><td>yes</td><td><a href="https://github.com/lschiavini/gesu/tree/main/editors/zed">editors/zed</a></td></tr><tr><td>Emacs</td><td>yes</td><td>yes, eglot or lsp-mode</td><td><a href="https://github.com/lschiavini/gesu/tree/main/editors/emacs">editors/emacs</a></td></tr><tr><td>Helix</td><td>yes, tree-sitter</td><td>yes</td><td><a href="https://github.com/lschiavini/gesu/tree/main/editors/helix">editors/helix</a></td></tr><tr><td>Sublime Text</td><td>yes</td><td>yes, LSP package</td><td><a href="https://github.com/lschiavini/gesu/tree/main/editors/sublime">editors/sublime</a></td></tr><tr><td>JetBrains</td><td>yes</td><td>yes, LSP4IJ plugin</td><td>see below</td></tr><tr><td>Vim</td><td>yes</td><td>with an LSP plugin</td><td><a href="https://github.com/lschiavini/gesu/tree/main/editors/nvim">editors/nvim</a></td></tr></tbody></table></div>
 <p>In every one of them, <code>True</code> is colored as an error before the checker even speaks.</p>
+<h3 id="vs-code-cursor-vscodium">VS Code, Cursor, VSCodium</h3>
+<p>In VS Code, search the extensions for "Gesù Language", or open the <a href="https://marketplace.visualstudio.com/items?itemName=LucasSchiavini.gesu-lang">Marketplace page</a>.</p>
+<p>For Cursor and VSCodium, from a clone of this repository:</p>
+<pre class="shell"><code>editors/vscode/install.sh cursor</code></pre>
 <h3 id="neovim">Neovim</h3>
-<p>Colors, indentation and the language server. With lazy.nvim:</p>
+<p>With lazy.nvim. This fetches the plugin and compiles the tree-sitter parser (it needs Node and a C compiler for that; without them a plain syntax file does the coloring):</p>
 <pre class="shell"><code>return {
-  { dir = &quot;~/path/to/gesu/editors/nvim&quot;, name = &quot;gesu&quot;, lazy = false },
+  {
+    &quot;lschiavini/gesu&quot;,
+    lazy = false,
+    build = &quot;editors/nvim/build-parser.sh&quot;,
+    init = function()
+      vim.filetype.add({ extension = { gesu = &quot;gesu&quot; } })
+    end,
+    config = function(plugin)
+      vim.opt.rtp:prepend(plugin.dir .. &quot;/editors/nvim&quot;)
+    end,
+  },
 }</code></pre>
-<p>Run <code>editors/nvim/build-parser.sh</code> once to compile the tree-sitter parser. Without it, a plain Vim syntax file does the coloring, and that file works in Vim too.</p>
-<h3 id="vs-code-and-cursor">VS Code and Cursor</h3>
-<pre class="shell"><code>editors/vscode/install.sh          # VS Code
-editors/vscode/install.sh cursor   # Cursor</code></pre>
+<h3 id="zed">Zed</h3>
+<p>Zed builds extensions from source, so it needs Rust installed through rustup. Clone this repository, open the command palette, run <code>zed: install dev extension</code>, and choose the folder <code>editors/zed</code>.</p>
+<h3 id="emacs">Emacs</h3>
+<pre class="shell"><code>(add-to-list &#x27;load-path &quot;/path/to/gesu/editors/emacs&quot;)
+(require &#x27;gesu-mode)
+(add-hook &#x27;gesu-mode-hook #&#x27;eglot-ensure)</code></pre>
+<p>With lsp-mode, use <code>#&#x27;lsp</code> in place of <code>#&#x27;eglot-ensure</code>.</p>
 <h3 id="helix">Helix</h3>
-<p>In <code>~/.config/helix/languages.toml</code>:</p>
-<pre class="shell"><code>[[language]]
-name = &quot;gesu&quot;
-scope = &quot;source.gesu&quot;
-file-types = [&quot;gesu&quot;]
-comment-token = &quot;--&quot;
-indent = { tab-width = 4, unit = &quot;    &quot; }
-language-servers = [&quot;gesu&quot;]
-
-[language-server.gesu]
-command = &quot;gesu&quot;
-args = [&quot;lsp&quot;]
-
-[[grammar]]
-name = &quot;gesu&quot;
-source = { git = &quot;https://github.com/lschiavini/gesu&quot;, rev = &quot;main&quot;, subpath = &quot;tree-sitter-gesu&quot; }</code></pre>
-<p>Then <code>hx --grammar fetch</code>, <code>hx --grammar build</code>, and copy <code>tree-sitter-gesu/queries/highlights.scm</code> to <code>~/.config/helix/runtime/queries/gesu/</code>.</p>
+<p>Add the contents of <a href="https://github.com/lschiavini/gesu/tree/main/editors/helix/languages.toml">editors/helix/languages.toml</a> to <code>~/.config/helix/languages.toml</code>. Then:</p>
+<pre class="shell"><code>hx --grammar fetch &amp;&amp; hx --grammar build
+mkdir -p ~/.config/helix/runtime/queries/gesu
+cp editors/helix/highlights.scm ~/.config/helix/runtime/queries/gesu/</code></pre>
+<h3 id="sublime-text">Sublime Text</h3>
+<p>Copy <code>editors/sublime/Gesu.tmLanguage</code> into your <code>Packages/User</code> folder for the colors. For the language server, install the LSP package and add the entry from <code>editors/sublime/LSP-gesu.sublime-settings</code> to its settings.</p>
+<h3 id="jetbrains">JetBrains</h3>
+<p>For the colors: Settings, Editor, TextMate Bundles, add the folder <code>editors/vscode</code>. For the language server: install the LSP4IJ plugin, add a new language server with the command <code>gesu lsp</code>, and map it to the file pattern <code>*.gesu</code>.</p>
+<h3 id="vim">Vim</h3>
+<pre class="shell"><code>set runtimepath+=/path/to/gesu/editors/nvim</code></pre>
+<p>That gives colors and indentation. For the language server, point vim-lsp or a similar plugin at <code>gesu lsp</code>.</p>
 <h3 id="any-other-editor">Any other editor</h3>
-<p>If it has a client for the Language Server Protocol, point it at the command <code>gesu lsp</code> for files ending in <code>.gesu</code>. That covers Emacs (eglot or lsp-mode), Sublime Text (the LSP package), Kate, and the JetBrains editors (the LSP4IJ plugin).</p>
+<p>If it has a client for the Language Server Protocol, point it at the command <code>gesu lsp</code> for files ending in <code>.gesu</code>.</p>
 <h2 id="what-ges-does-not-have">What Gesù does not have</h2>
 <p>No null. No <code>True</code>. No shadowing. No implicit conversions. No lifetimes. No classes. No async. No package manager. No parables passed as values, yet.</p>
 <h2 id="what-is-in-this-version">What is in this version</h2>
@@ -682,5 +786,27 @@ source = { git = &quot;https://github.com/lschiavini/gesu&quot;, rev = &quot;mai
 <p>The interpreter is 4,600 lines of Rust. Run the tests with <code>cargo test</code>: every example above is run and compared with what this page says it prints.</p>
 <p>Amen.</p>
 </main>
+</div>
+<a class="try" href="#install">Try now</a>
+<script>
+// Marks, in the side contents, the section being read.
+const links = [...document.querySelectorAll(".contents a[href^='#']")].filter((a) => !a.classList.contains("home"));
+const byId = new Map(links.map((a) => [a.getAttribute("href").slice(1), a]));
+const observer = new IntersectionObserver(
+  (entries) => {
+    for (const entry of entries) {
+      if (entry.isIntersecting) {
+        links.forEach((a) => a.classList.remove("here"));
+        byId.get(entry.target.id)?.classList.add("here");
+      }
+    }
+  },
+  { rootMargin: "-10% 0px -80% 0px" }
+);
+byId.forEach((_, id) => {
+  const heading = document.getElementById(id);
+  if (heading) observer.observe(heading);
+});
+</script>
 </body>
 </html>

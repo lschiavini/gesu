@@ -1,0 +1,16 @@
+id = "gesu"
+name = "Gesù"
+description = "Gesù language support: syntax colors and the gesu language server. There is only one Truth, Jesus."
+version = "0.1.2"
+schema_version = 1
+authors = ["Lucas Schiavini"]
+repository = "https://github.com/lschiavini/gesu"
+
+[grammars.gesu]
+repository = "https://github.com/lschiavini/gesu"
+rev = "172b173eadc97c6df2f3aa9ad46860f5d0479882"
+path = "tree-sitter-gesu"
+
+[language_servers.gesu]
+name = "gesu"
+languages = ["Gesù"]

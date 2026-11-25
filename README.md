@@ -608,62 +608,95 @@ warning: the rooster crows
 
 ## Your editor
 
-Gesù gives an editor three things, and none of them is tied to one editor.
+Install `gesu` first. Every editor below starts it as `gesu lsp`, a language server: it gives the checker's errors as you type, completion, and a note on hover for every word of the language. Colors come from a grammar made for each family of editors.
 
-| Piece | What it gives | Where it lives |
-|---|---|---|
-| Language server | errors as you type, completion, a note on hover | `gesu lsp`, inside the binary |
-| Tree-sitter grammar | syntax colors in Neovim, Helix, Zed, Emacs | `tree-sitter-gesu/` |
-| TextMate grammar | syntax colors in VS Code, Cursor, JetBrains, Sublime | `editors/vscode/syntaxes/` |
+| Editor | Colors | Errors as you type | Get it |
+|---|---|---|---|
+| VS Code | yes | yes | [Marketplace](https://marketplace.visualstudio.com/items?itemName=LucasSchiavini.gesu-lang) |
+| Cursor, VSCodium | yes | yes | [editors/vscode](https://github.com/lschiavini/gesu/tree/main/editors/vscode) |
+| Neovim | yes, tree-sitter | yes | [editors/nvim](https://github.com/lschiavini/gesu/tree/main/editors/nvim) |
+| Zed | yes, tree-sitter | yes | [editors/zed](https://github.com/lschiavini/gesu/tree/main/editors/zed) |
+| Emacs | yes | yes, eglot or lsp-mode | [editors/emacs](https://github.com/lschiavini/gesu/tree/main/editors/emacs) |
+| Helix | yes, tree-sitter | yes | [editors/helix](https://github.com/lschiavini/gesu/tree/main/editors/helix) |
+| Sublime Text | yes | yes, LSP package | [editors/sublime](https://github.com/lschiavini/gesu/tree/main/editors/sublime) |
+| JetBrains | yes | yes, LSP4IJ plugin | see below |
+| Vim | yes | with an LSP plugin | [editors/nvim](https://github.com/lschiavini/gesu/tree/main/editors/nvim) |
 
 In every one of them, `True` is colored as an error before the checker even speaks.
 
+### VS Code, Cursor, VSCodium
+
+In VS Code, search the extensions for "Gesù Language", or open the [Marketplace page](https://marketplace.visualstudio.com/items?itemName=LucasSchiavini.gesu-lang).
+
+For Cursor and VSCodium, from a clone of this repository:
+
+```sh
+editors/vscode/install.sh cursor
+```
+
 ### Neovim
 
-Colors, indentation and the language server. With lazy.nvim:
+With lazy.nvim. This fetches the plugin and compiles the tree-sitter parser (it needs Node and a C compiler for that; without them a plain syntax file does the coloring):
 
 ```lua
 return {
-  { dir = "~/path/to/gesu/editors/nvim", name = "gesu", lazy = false },
+  {
+    "lschiavini/gesu",
+    lazy = false,
+    build = "editors/nvim/build-parser.sh",
+    init = function()
+      vim.filetype.add({ extension = { gesu = "gesu" } })
+    end,
+    config = function(plugin)
+      vim.opt.rtp:prepend(plugin.dir .. "/editors/nvim")
+    end,
+  },
 }
 ```
 
-Run `editors/nvim/build-parser.sh` once to compile the tree-sitter parser. Without it, a plain Vim syntax file does the coloring, and that file works in Vim too.
+### Zed
 
-### VS Code and Cursor
+Zed builds extensions from source, so it needs Rust installed through rustup. Clone this repository, open the command palette, run `zed: install dev extension`, and choose the folder `editors/zed`.
 
-```sh
-editors/vscode/install.sh          # VS Code
-editors/vscode/install.sh cursor   # Cursor
+### Emacs
+
+```elisp
+(add-to-list 'load-path "/path/to/gesu/editors/emacs")
+(require 'gesu-mode)
+(add-hook 'gesu-mode-hook #'eglot-ensure)
 ```
+
+With lsp-mode, use `#'lsp` in place of `#'eglot-ensure`.
 
 ### Helix
 
-In `~/.config/helix/languages.toml`:
+Add the contents of [editors/helix/languages.toml](https://github.com/lschiavini/gesu/tree/main/editors/helix/languages.toml) to `~/.config/helix/languages.toml`. Then:
 
-```toml
-[[language]]
-name = "gesu"
-scope = "source.gesu"
-file-types = ["gesu"]
-comment-token = "--"
-indent = { tab-width = 4, unit = "    " }
-language-servers = ["gesu"]
-
-[language-server.gesu]
-command = "gesu"
-args = ["lsp"]
-
-[[grammar]]
-name = "gesu"
-source = { git = "https://github.com/lschiavini/gesu", rev = "main", subpath = "tree-sitter-gesu" }
+```sh
+hx --grammar fetch && hx --grammar build
+mkdir -p ~/.config/helix/runtime/queries/gesu
+cp editors/helix/highlights.scm ~/.config/helix/runtime/queries/gesu/
 ```
 
-Then `hx --grammar fetch`, `hx --grammar build`, and copy `tree-sitter-gesu/queries/highlights.scm` to `~/.config/helix/runtime/queries/gesu/`.
+### Sublime Text
+
+Copy `editors/sublime/Gesu.tmLanguage` into your `Packages/User` folder for the colors. For the language server, install the LSP package and add the entry from `editors/sublime/LSP-gesu.sublime-settings` to its settings.
+
+### JetBrains
+
+For the colors: Settings, Editor, TextMate Bundles, add the folder `editors/vscode`. For the language server: install the LSP4IJ plugin, add a new language server with the command `gesu lsp`, and map it to the file pattern `*.gesu`.
+
+### Vim
+
+```vim
+set runtimepath+=/path/to/gesu/editors/nvim
+```
+
+That gives colors and indentation. For the language server, point vim-lsp or a similar plugin at `gesu lsp`.
 
 ### Any other editor
 
-If it has a client for the Language Server Protocol, point it at the command `gesu lsp` for files ending in `.gesu`. That covers Emacs (eglot or lsp-mode), Sublime Text (the LSP package), Kate, and the JetBrains editors (the LSP4IJ plugin).
+If it has a client for the Language Server Protocol, point it at the command `gesu lsp` for files ending in `.gesu`.
 
 ## What Gesù does not have
 

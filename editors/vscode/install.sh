@@ -6,5 +6,5 @@ set -e
 cd "$(dirname "$0")"
 editor=${1:-code}
 npm install --silent --no-audit --no-fund
-npx --yes @vscode/vsce package --allow-missing-repository --skip-license --out gesu.vsix
-"$editor" --install-extension gesu.vsix --force
+npx --yes @vscode/vsce package --allow-missing-repository --skip-license --out gesu-lang.vsix
+"$editor" --install-extension gesu-lang.vsix --force

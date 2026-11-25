@@ -1,0 +1,19 @@
+# Add this to ~/.config/helix/languages.toml, then run:
+#   hx --grammar fetch && hx --grammar build
+# and copy highlights.scm to ~/.config/helix/runtime/queries/gesu/
+
+[[language]]
+name = "gesu"
+scope = "source.gesu"
+file-types = ["gesu"]
+comment-token = "--"
+indent = { tab-width = 4, unit = "    " }
+language-servers = ["gesu"]
+
+[language-server.gesu]
+command = "gesu"
+args = ["lsp"]
+
+[[grammar]]
+name = "gesu"
+source = { git = "https://github.com/lschiavini/gesu", rev = "main", subpath = "tree-sitter-gesu" }

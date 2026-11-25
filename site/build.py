@@ -141,9 +141,15 @@ def table(rows):
     return "".join(out)
 
 
+# Shorter names for the side contents, where the heading itself is long.
+SHORT = {"What makes Gesù the most examined language you can install today?": "The 14 facts"}
+
+
 def render(markdown):
+    """Returns the page body and the list of its sections as (id, label)."""
     lines = markdown.split("\n")
     out, i = [], 0
+    sections = []
     while i < len(lines):
         line = lines[i]
         if line.startswith("```"):
@@ -156,8 +162,11 @@ def render(markdown):
             out.append(code_block(lang, "\n".join(block)))
             i += 1
         elif m := re.match(r"^(#{1,3}) (.*)$", line):
-            level = len(m.group(1))
-            out.append(f'<h{level} id="{slug(m.group(2))}">{inline(m.group(2))}</h{level}>')
+            level, title = len(m.group(1)), m.group(2)
+            if level == 2 and sections is not None and out and not out[-1].startswith("<h1"):
+                label = SHORT.get(title) or re.split(r"[:,]", title)[0]
+                sections.append((slug(title), label))
+            out.append(f'<h{level} id="{slug(title)}">{inline(title)}</h{level}>')
             i += 1
         elif line.startswith("|"):
             rows = []
@@ -190,7 +199,7 @@ def render(markdown):
                 out.append(f'<div class="fact"><span class="numeral">{m.group(1)}</span><p>{inline(m.group(2))}</p></div>')
             else:
                 out.append(f"<p>{inline(text)}</p>")
-    return "\n".join(out)
+    return "\n".join(out), sections
 
 
 PAGE = """<!doctype html>
@@ -230,11 +239,82 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
-main {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 0 28px 120px;
+.layout {
+  display: grid;
+  grid-template-columns: 210px minmax(0, 800px);
+  justify-content: center;
+  gap: 64px;
 }
+main {
+  min-width: 0;
+  padding: 0 28px 140px;
+}
+h2, h3 { scroll-margin-top: 28px; }
+
+/* The contents, at the side. */
+.contents {
+  position: sticky;
+  top: 0;
+  align-self: start;
+  max-height: 100vh;
+  overflow-y: auto;
+  padding: 44px 0 40px 4px;
+  display: flex;
+  flex-direction: column;
+  font-size: 16.5px;
+  line-height: 1.3;
+}
+.contents a {
+  padding: 7px 0 7px 14px;
+  border-left: 2px solid var(--rule);
+  color: var(--soft);
+  text-decoration: none;
+  transition: color 0.15s, border-color 0.15s;
+}
+.contents a:hover { color: var(--ink); }
+.contents a.here {
+  border-left-color: var(--rubric);
+  color: var(--rubric);
+  font-weight: 600;
+}
+.contents .home {
+  margin-bottom: 14px;
+  padding-left: 0;
+  border: 0;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--rubric);
+}
+.contents .source {
+  margin-top: 18px;
+  padding-left: 0;
+  border: 0;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* Always at hand: the way to the install section. */
+.try {
+  position: fixed;
+  right: 28px;
+  bottom: 28px;
+  z-index: 10;
+  padding: 13px 26px 14px;
+  border-radius: 999px;
+  background: var(--rubric);
+  color: var(--parchment);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 23px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  box-shadow: 0 0 0 1px #b8924d inset, 0 12px 28px -10px #4a0d0d;
+  transition: transform 0.15s, background 0.15s;
+}
+.try:hover { background: #7a1616; transform: translateY(-2px); }
 h1, h2, h3 { font-family: "Cormorant Garamond", Georgia, serif; line-height: 1.12; }
 
 /* The opening: name, headline, and the line about the rooster. */
@@ -401,7 +481,12 @@ main > p:last-child {
   color: var(--rubric);
 }
 
+@media (max-width: 1080px) {
+  .layout { display: block; max-width: 856px; margin: 0 auto; }
+  .contents { display: none; }
+}
 @media (max-width: 600px) {
+  .try { right: 16px; bottom: 16px; font-size: 20px; padding: 11px 22px 12px; }
   body { font-size: 19px; }
   main { padding: 0 18px 80px; }
   h2 { font-size: 32px; margin-top: 70px; }
@@ -412,17 +497,47 @@ main > p:last-child {
 </style>
 </head>
 <body>
+<div class="layout">
+<nav class="contents" aria-label="Contents">
+<a class="home" href="#ges">Gesù</a>
+__TOC__
+<a class="source" href="https://github.com/lschiavini/gesu">Source on GitHub</a>
+</nav>
 <main>
 __CONTENT__
 </main>
+</div>
+<a class="try" href="#install">Try now</a>
+<script>
+// Marks, in the side contents, the section being read.
+const links = [...document.querySelectorAll(".contents a[href^='#']")].filter((a) => !a.classList.contains("home"));
+const byId = new Map(links.map((a) => [a.getAttribute("href").slice(1), a]));
+const observer = new IntersectionObserver(
+  (entries) => {
+    for (const entry of entries) {
+      if (entry.isIntersecting) {
+        links.forEach((a) => a.classList.remove("here"));
+        byId.get(entry.target.id)?.classList.add("here");
+      }
+    }
+  },
+  { rootMargin: "-10% 0px -80% 0px" }
+);
+byId.forEach((_, id) => {
+  const heading = document.getElementById(id);
+  if (heading) observer.observe(heading);
+});
+</script>
 </body>
 </html>
 """
 
 
 def main():
-    content = render(README.read_text(encoding="utf-8"))
-    (ROOT / "index.html").write_text(PAGE.replace("__CONTENT__", content), encoding="utf-8")
+    content, sections = render(README.read_text(encoding="utf-8"))
+    toc = "\n".join(f'<a href="#{anchor}">{html.escape(label)}</a>' for anchor, label in sections)
+    page = PAGE.replace("__CONTENT__", content).replace("__TOC__", toc)
+    (ROOT / "index.html").write_text(page, encoding="utf-8")
     print(f"wrote {ROOT / 'index.html'}")
 
 
