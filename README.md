@@ -616,8 +616,8 @@ Install `gesu` first. Every editor below starts it as `gesu lsp`, a language ser
 
 | Editor | Colors | Errors as you type | Get it |
 |---|---|---|---|
-| VS Code | yes | yes | [Marketplace](https://marketplace.visualstudio.com/items?itemName=LucasSchiavini.gesu-lang) |
-| Cursor, VSCodium | yes | yes | [editors/vscode](https://github.com/lschiavini/gesu/tree/main/editors/vscode) |
+| VS Code | yes | yes | [gesu-lang.vsix](https://github.com/lschiavini/gesu/releases/latest/download/gesu-lang.vsix) |
+| Cursor, VSCodium | yes | yes | [gesu-lang.vsix](https://github.com/lschiavini/gesu/releases/latest/download/gesu-lang.vsix) |
 | Neovim | yes, tree-sitter | yes | [editors/nvim](https://github.com/lschiavini/gesu/tree/main/editors/nvim) |
 | Zed | yes, tree-sitter | yes | [editors/zed](https://github.com/lschiavini/gesu/tree/main/editors/zed) |
 | Emacs | yes | yes, eglot or lsp-mode | [editors/emacs](https://github.com/lschiavini/gesu/tree/main/editors/emacs) |
@@ -630,13 +630,14 @@ In every one of them, `True` is colored as an error before the checker even spea
 
 ### VS Code, Cursor, VSCodium
 
-In VS Code, search the extensions for "Gesù Language", or open the [Marketplace page](https://marketplace.visualstudio.com/items?itemName=LucasSchiavini.gesu-lang).
-
-For Cursor and VSCodium, from a clone of this repository:
+Download [gesu-lang.vsix](https://github.com/lschiavini/gesu/releases/latest/download/gesu-lang.vsix), then:
 
 ```sh
-editors/vscode/install.sh cursor
+code --install-extension gesu-lang.vsix     # VS Code
+cursor --install-extension gesu-lang.vsix   # Cursor
 ```
+
+Or, inside the editor: open the Extensions view, the `...` menu, "Install from VSIX".
 
 ### Neovim
 
