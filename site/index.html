@@ -1,0 +1,661 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gesù: there is only one Truth, Jesus</title>
+<meta name="description" content="Gesù is a programming language with two booleans. One is False. The other is Jesus.">
+<meta property="og:title" content="Gesù: there is only one Truth, Jesus">
+<meta property="og:description" content="A programming language with two booleans. One is False. The other is Jesus.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%238f1d1d'/%3E%3Cpath d='M14 5h4v7h7v4h-7v11h-4V16H7v-4h7z' fill='%23f6efe0'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --parchment: #f6efe0;
+  --page: #fbf7ec;
+  --ink: #221b16;
+  --soft: #6b5d51;
+  --rubric: #8f1d1d;
+  --gold: #a88443;
+  --rule: #dccfb4;
+  --night: #1d1814;
+  --night-text: #eadfca;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--parchment);
+  color: var(--ink);
+  font-family: "EB Garamond", Georgia, serif;
+  font-size: 21px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 28px 120px;
+}
+h1, h2, h3 { font-family: "Cormorant Garamond", Georgia, serif; line-height: 1.12; }
+
+/* The opening: name, headline, and the line about the rooster. */
+h1 {
+  margin: 0;
+  padding-top: 14vh;
+  text-align: center;
+  font-size: clamp(110px, 22vw, 220px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--rubric);
+}
+h1::before {
+  content: "A programming language";
+  display: block;
+  margin-bottom: 18px;
+  font-family: "EB Garamond", Georgia, serif;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+h1 + h2 {
+  margin: 10px 0 0;
+  padding: 0;
+  border: 0;
+  text-align: center;
+  font-size: clamp(30px, 5.2vw, 46px);
+  font-style: italic;
+  font-weight: 500;
+  color: var(--ink);
+}
+h1 + h2::after {
+  content: "";
+  display: block;
+  width: 84px;
+  height: 1px;
+  margin: 34px auto 0;
+  background: var(--gold);
+}
+h1 + h2 + p {
+  max-width: 560px;
+  margin: 30px auto 70px;
+  text-align: center;
+  font-size: 23px;
+  color: var(--soft);
+}
+h1 + h2 + p strong { font-weight: 500; }
+h1 + h2 + p + p::first-letter {
+  float: left;
+  margin: 8px 12px 0 0;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 92px;
+  font-weight: 700;
+  line-height: 0.74;
+  color: var(--rubric);
+}
+
+h2 {
+  margin: 96px 0 26px;
+  padding-top: 30px;
+  border-top: 1px solid var(--rule);
+  font-size: 40px;
+  font-weight: 600;
+  color: var(--rubric);
+}
+h3 { margin: 52px 0 14px; font-size: 29px; font-weight: 600; }
+p { margin: 0 0 20px; }
+a { color: var(--rubric); text-underline-offset: 3px; }
+strong { font-weight: 600; }
+ul, ol { margin: 0 0 22px; padding-left: 26px; }
+li { margin-bottom: 8px; }
+li::marker { color: var(--gold); }
+
+code {
+  font-family: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  font-size: 0.74em;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: #ece2cc;
+  color: #5c1414;
+}
+pre {
+  margin: 0 0 26px;
+  padding: 22px 24px;
+  border-radius: 10px;
+  overflow-x: auto;
+  background: var(--night);
+  color: var(--night-text);
+  font-size: 15.5px;
+  line-height: 1.62;
+  box-shadow: 0 1px 0 #fff8 inset, 0 14px 34px -22px #2a1a0a;
+}
+pre code { padding: 0; background: none; color: inherit; font-size: inherit; }
+pre.output, pre.report {
+  background: var(--page);
+  color: var(--ink);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--gold);
+  box-shadow: none;
+}
+pre.report { border-left-color: var(--rubric); }
+pre.shell { background: #2a231d; }
+
+/* Gesù code */
+.k { color: #e0a36b; }
+.t { color: #9fc1a6; }
+.b { color: #d9c58a; }
+.s { color: #b9c98f; }
+.i { color: #f0d9a0; }
+.e { color: #d99a6c; }
+.n { color: #dba6a0; }
+.c { color: #85776a; font-style: italic; }
+.j { color: #f2cf6b; font-weight: 500; }
+.f { color: #dba6a0; }
+.h { color: #ff8f80; text-decoration: line-through; }
+/* compiler reports */
+.x { color: var(--rubric); font-weight: 500; }
+.w { color: #96691a; font-weight: 500; }
+.m { font-weight: 500; }
+.d { color: #8a7c6c; }
+
+.fact {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 6px 18px;
+  align-items: start;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--rule);
+}
+.fact p { margin: 0; }
+.numeral {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 50px;
+  font-weight: 600;
+  line-height: 1;
+  text-align: right;
+  color: var(--rubric);
+}
+
+.table { margin: 0 0 28px; overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 19px; }
+th {
+  padding: 10px 14px 10px 0;
+  border-bottom: 2px solid var(--gold);
+  text-align: left;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--soft);
+}
+td { padding: 11px 14px 11px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+
+/* The last word. */
+main > p:last-child {
+  margin: 100px 0 0;
+  text-align: center;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 64px;
+  font-style: italic;
+  font-weight: 500;
+  color: var(--rubric);
+}
+
+@media (max-width: 600px) {
+  body { font-size: 19px; }
+  main { padding: 0 18px 80px; }
+  h2 { font-size: 32px; margin-top: 70px; }
+  pre { padding: 16px; font-size: 13.5px; border-radius: 8px; }
+  .fact { grid-template-columns: 44px 1fr; gap: 6px 12px; }
+  .numeral { font-size: 38px; }
+}
+</style>
+</head>
+<body>
+<main>
+<h1 id="ges">Gesù</h1>
+<h2 id="there-is-only-one-truth-jesus">There is only one Truth, Jesus.</h2>
+<p><strong>At 490 forgiven sins, the loudest noise in a Gesù program comes from the rooster.</strong></p>
+<p>Gesù is a programming language with two booleans. One is <code>False</code>. The other is <code>Jesus</code>.</p>
+<p>There is no <code>True</code>. Write it and the compiler stops you on that line:</p>
+<pre class="report"><code><span class="x">error</span>: <span class="m">there is only one Truth, Jesus</span>
+<span class="d">  --&gt; sermon.gesu:2</span>
+<span class="d">   |</span>
+<span class="d"> 2 | let x = True</span>
+<span class="d">   |</span>
+<span class="d">   = hint: write `Jesus` in place of `True`</span></code></pre>
+<p>What follows is a list of facts. Read them before you choose a language for your next program.</p>
+<h2 id="what-makes-ges-the-most-examined-language-you-can-install-today">What makes Gesù the most examined language you can install today?</h2>
+<p>There is no magic in it. There is patient attention to detail.</p>
+<div class="fact"><span class="numeral">1</span><p>Every program is examined before one line of it runs. Types, ownership, unconfessed sins and unused values are all found first. A program that passes does not fail on a typo at three in the morning.</p></div>
+<div class="fact"><span class="numeral">2</span><p>A value has one owner. Give it away and it is gone. Use it afterwards and you are told who has it and since which line. The error is called <code>Thou shalt not steal</code>.</p></div>
+<div class="fact"><span class="numeral">3</span><p>There are no lifetime annotations. A loan lasts for one call and cannot be stored or returned. You write <code>lend</code> or <code>entrust</code> where the loan is made, and that is the whole ceremony.</p></div>
+<div class="fact"><span class="numeral">4</span><p>A parable that can fail must say so in its signature: <code>may sin</code>. Call it without <code>tempt ... forgive</code>, and without confessing in turn, and the program does not compile.</p></div>
+<div class="fact"><span class="numeral">5</span><p>Gesù forgives 490 sins per run, as Matthew 18:22 instructs. The 491st is not forgiven, and the program dies.</p></div>
+<div class="fact"><span class="numeral">6</span><p>There is no null. A value that may be absent is <code>Found(x)</code> or <code>Lost</code>, and <code>discern</code> makes you face both.</p></div>
+<div class="fact"><span class="numeral">7</span><p>A variable you declare and never use is an error. The message is <code>you buried your talent</code>.</p></div>
+<div class="fact"><span class="numeral">8</span><p>Nothing changes unless you declared it <code>mortal</code>. A <code>law</code> never changes. Try, and you are reminded: <code>it is written: DISCIPLES is 12</code>.</p></div>
+<div class="fact"><span class="numeral">9</span><p><code>if</code> accepts <code>Jesus</code> or <code>False</code>. It does not accept <code>0</code>, an empty text, or anything else that other languages agree to call true.</p></div>
+<div class="fact"><span class="numeral">10</span><p>There are no implicit conversions. A Number and a Decimal do not mix until you say how.</p></div>
+<div class="fact"><span class="numeral">11</span><p>Deny Jesus three times in one program and the rooster crows. It is a warning, and the program still runs.</p></div>
+<div class="fact"><span class="numeral">12</span><p>The whole of Lua is compiled into the binary. Python can be added with one flag. Both are pagans: whatever they return must be baptized before Gesù will touch it.</p></div>
+<div class="fact"><span class="numeral">13</span><p>The binary is 1.5 megabytes and starts in under a hundredth of a second. It has 35 words and 33 built-in parables. One for each year.</p></div>
+<div class="fact"><span class="numeral">14</span><p>Every block ends with <code>amen</code>. So does every program. A file without its final <code>amen</code> does not run.</p></div>
+<h2 id="install">Install</h2>
+<p>You need Rust. Then:</p>
+<pre class="shell"><code>git clone git@github.com:lschiavini/gesu.git
+cd gesu
+./install.sh            # builds and copies gesu to ~/.local/bin
+./install.sh --python   # the same, with the Python pagan included</code></pre>
+<p>Run a program:</p>
+<pre class="shell"><code>gesu examples/hello.gesu
+gesu check examples/hello.gesu          # examine it, do not run it</code></pre>
+<h2 id="the-first-program">The first program</h2>
+<pre class="gesu"><code><span class="c">-- The feeding of the five thousand.</span>
+<span class="k">law</span> <span class="t">DISCIPLES</span> = <span class="n">12</span>
+
+<span class="k">parable</span> enough(loaves: <span class="t">Number</span>, fishes: <span class="t">Number</span>, crowd: <span class="t">Number</span>) -&gt; <span class="t">Truth</span>
+    <span class="k">give</span> loaves + fishes &gt;= crowd
+<span class="k">amen</span>
+
+<span class="k">let</span> loaves = <span class="n">5</span>
+<span class="k">let</span> fishes = <span class="n">2</span>
+<span class="k">let</span> crowd = <span class="n">5000</span>
+
+<span class="k">preach</span> <span class="s">&quot;</span><span class="i">{DISCIPLES}</span><span class="s"> disciples, </span><span class="i">{loaves}</span><span class="s"> loaves, </span><span class="i">{fishes}</span><span class="s"> fishes, </span><span class="i">{crowd}</span><span class="s"> mouths&quot;</span>
+
+<span class="k">if</span> enough(loaves, fishes, crowd)
+    <span class="k">preach</span> <span class="s">&quot;there is enough&quot;</span>
+<span class="k">otherwise</span>
+    <span class="k">preach</span> <span class="s">&quot;a miracle is needed&quot;</span>
+<span class="k">amen</span>
+
+<span class="k">let</span> fed = <span class="j">Jesus</span>
+<span class="k">if</span> fed <span class="k">is</span> <span class="j">Jesus</span>
+    <span class="k">preach</span> <span class="s">&quot;all ate and were satisfied&quot;</span>
+<span class="k">amen</span>
+
+<span class="k">let</span> <span class="k">mortal</span> days = <span class="n">0</span>
+<span class="k">while</span> days &lt; <span class="n">3</span>
+    days = days + <span class="n">1</span>
+<span class="k">amen</span>
+<span class="k">preach</span> <span class="s">&quot;risen on day </span><span class="i">{days}</span><span class="s">&quot;</span>
+
+<span class="k">repeat</span> <span class="n">2</span> <span class="k">times</span>
+    <span class="k">preach</span> <span class="s">&quot;hosanna&quot;</span>
+<span class="k">amen</span>
+<span class="k">amen</span></code></pre>
+<pre class="output"><code>12 disciples, 5 loaves, 2 fishes, 5000 mouths
+a miracle is needed
+all ate and were satisfied
+risen on day 3
+hosanna
+hosanna</code></pre>
+<p>The words you just read:</p>
+<div class="table"><table><thead><tr><th>Word</th><th>What it does</th></tr></thead><tbody><tr><td><code>let x = 5</code></td><td>declares a value. It cannot change.</td></tr><tr><td><code>let mortal x = 5</code></td><td>declares a value that can change.</td></tr><tr><td><code>law X = 12</code></td><td>a constant, visible in every parable.</td></tr><tr><td><code>preach</code></td><td>prints.</td></tr><tr><td><code>parable</code> / <code>give</code></td><td>a function, and what it returns.</td></tr><tr><td><code>Jesus</code> / <code>False</code></td><td>the two values of type <code>Truth</code>.</td></tr><tr><td><code>deny</code></td><td>negation. <code>deny Jesus</code> is <code>False</code>.</td></tr><tr><td><code>is</code> / <code>is not</code></td><td>equality. There is no <code>==</code>.</td></tr><tr><td><code>amen</code></td><td>closes every block, and the program.</td></tr><tr><td><code>--</code></td><td>starts a comment.</td></tr></tbody></table></div>
+<h2 id="ownership-give-lend-entrust">Ownership: give, lend, entrust</h2>
+<p>Numbers, decimals, texts and truths are copied. Multitudes (lists), maps and kinds are owned: there is one owner at a time.</p>
+<pre class="gesu"><code><span class="k">parable</span> count(names: <span class="k">lend</span> [<span class="t">Text</span>]) -&gt; <span class="t">Number</span>
+    <span class="k">give</span> <span class="b">length</span>(names)
+<span class="k">amen</span>
+
+<span class="k">parable</span> call(names: <span class="k">entrust</span> [<span class="t">Text</span>], name: <span class="t">Text</span>)
+    <span class="b">push</span>(<span class="k">entrust</span> names, name)
+<span class="k">amen</span>
+
+<span class="k">parable</span> send(names: [<span class="t">Text</span>]) -&gt; <span class="t">Text</span>
+    <span class="k">give</span> <span class="b">join</span>(<span class="k">lend</span> names, <span class="s">&quot;, &quot;</span>)
+<span class="k">amen</span>
+
+<span class="k">let</span> <span class="k">mortal</span> apostles = [<span class="s">&quot;Peter&quot;</span>, <span class="s">&quot;Andrew&quot;</span>, <span class="s">&quot;John&quot;</span>]
+
+<span class="k">preach</span> count(<span class="k">lend</span> apostles)
+call(<span class="k">entrust</span> apostles, <span class="s">&quot;Matthew&quot;</span>)
+<span class="k">preach</span> count(<span class="k">lend</span> apostles)
+
+<span class="k">for</span> <span class="k">each</span> i, name <span class="k">in</span> apostles
+    <span class="k">preach</span> <span class="s">&quot;</span><span class="i">{i}</span><span class="s">: </span><span class="i">{name}</span><span class="s">&quot;</span>
+<span class="k">amen</span>
+
+<span class="k">let</span> twelve = <span class="b">copy</span>(<span class="k">lend</span> apostles)
+<span class="k">preach</span> send(apostles)
+<span class="k">preach</span> twelve
+<span class="k">amen</span></code></pre>
+<pre class="output"><code>3
+4
+0: Peter
+1: Andrew
+2: John
+3: Matthew
+Peter, Andrew, John, Matthew
+[&quot;Peter&quot;, &quot;Andrew&quot;, &quot;John&quot;, &quot;Matthew&quot;]</code></pre>
+<p>Three ways to pass a value:</p>
+<div class="table"><table><thead><tr><th>You write</th><th>The parable declares</th><th>What happens</th></tr></thead><tbody><tr><td><code>send(apostles)</code></td><td><code>names: [Text]</code></td><td>Given away. <code>apostles</code> is gone.</td></tr><tr><td><code>count(lend apostles)</code></td><td><code>names: lend [Text]</code></td><td>Read only. Still yours afterwards.</td></tr><tr><td><code>call(entrust apostles, ...)</code></td><td><code>names: entrust [Text]</code></td><td>May be changed. Still yours afterwards. Must be <code>mortal</code>.</td></tr></tbody></table></div>
+<p>Now steal something:</p>
+<pre class="gesu"><code><span class="k">let</span> apostles = [<span class="s">&quot;Peter&quot;</span>, <span class="s">&quot;Andrew&quot;</span>]
+<span class="k">let</span> twelve = apostles
+<span class="k">preach</span> apostles</code></pre>
+<pre class="report"><code><span class="x">error</span>: <span class="m">Thou shalt not steal</span>
+<span class="d">  --&gt; steal.gesu:7</span>
+<span class="d">   |</span>
+<span class="d"> 7 | preach apostles</span>
+<span class="d">   |</span>
+<span class="d">   = `apostles` was given to `twelve` on line 6</span>
+<span class="d">   = hint: lend it there (`lend apostles`), or give away a `copy(lend apostles)`</span></code></pre>
+<p>The checker also knows about loops, about changing a multitude while you walk through it, and about entrusting one value twice in one call:</p>
+<pre class="report"><code><span class="x">error</span>: <span class="m">no one can serve two masters</span>
+<span class="d">  --&gt; loop.gesu:17</span>
+<span class="d">   |</span>
+<span class="d">17 | grow(entrust xs, lend xs)</span>
+<span class="d">   |</span>
+<span class="d">   = `xs` is entrusted and also used elsewhere in this call</span></code></pre>
+<h2 id="sins-confess-them-or-be-refused">Sins: confess them or be refused</h2>
+<pre class="gesu"><code><span class="k">parable</span> divide(a: <span class="t">Number</span>, b: <span class="t">Number</span>) -&gt; <span class="t">Number</span> <span class="k">may</span> <span class="k">sin</span>
+    <span class="k">if</span> b <span class="k">is</span> <span class="n">0</span>
+        <span class="k">sin</span> <span class="s">&quot;divided by nothing&quot;</span>
+    <span class="k">amen</span>
+    <span class="k">give</span> a / b
+<span class="k">amen</span>
+
+<span class="k">parable</span> find(names: <span class="k">lend</span> [<span class="t">Text</span>], wanted: <span class="t">Text</span>) -&gt; <span class="t">Maybe</span> <span class="t">Number</span>
+    <span class="k">for</span> <span class="k">each</span> i, name <span class="k">in</span> names
+        <span class="k">if</span> name <span class="k">is</span> wanted
+            <span class="k">give</span> <span class="t">Found</span>(i)
+        <span class="k">amen</span>
+    <span class="k">amen</span>
+    <span class="k">give</span> <span class="t">Lost</span>
+<span class="k">amen</span>
+
+<span class="k">let</span> apostles = [<span class="s">&quot;Peter&quot;</span>, <span class="s">&quot;Andrew&quot;</span>, <span class="s">&quot;John&quot;</span>]
+<span class="k">let</span> <span class="k">mortal</span> place = <span class="n">0</span>
+
+<span class="k">discern</span> find(<span class="k">lend</span> apostles, <span class="s">&quot;John&quot;</span>)
+    <span class="t">Found</span>(i): place = i
+    <span class="t">Lost</span>: <span class="k">preach</span> <span class="s">&quot;not among the twelve&quot;</span>
+<span class="k">amen</span>
+<span class="k">preach</span> <span class="s">&quot;John stands at </span><span class="i">{place}</span><span class="s">&quot;</span>
+
+<span class="k">discern</span> find(<span class="k">lend</span> apostles, <span class="s">&quot;Judas&quot;</span>)
+    <span class="t">Found</span>(i): <span class="k">preach</span> <span class="s">&quot;found at </span><span class="i">{i}</span><span class="s">&quot;</span>
+    <span class="t">Lost</span>: <span class="k">preach</span> <span class="s">&quot;Judas is not among them&quot;</span>
+<span class="k">amen</span>
+
+<span class="k">tempt</span>
+    <span class="k">preach</span> divide(<span class="n">10</span>, place)
+    <span class="k">preach</span> divide(<span class="n">10</span>, <span class="n">0</span>)
+<span class="k">forgive</span> trespass
+    <span class="k">preach</span> <span class="s">&quot;forgiven: </span><span class="i">{trespass}</span><span class="s">&quot;</span>
+<span class="k">amen</span>
+<span class="k">amen</span></code></pre>
+<pre class="output"><code>John stands at 2
+Judas is not among them
+5
+forgiven: divided by nothing</code></pre>
+<p>Call <code>divide</code> from a parable that does not confess:</p>
+<pre class="report"><code><span class="x">error</span>: <span class="m">the parable `half` may sin here and does not confess it</span>
+<span class="d">  --&gt; confess.gesu:11</span>
+<span class="d">   |</span>
+<span class="d">11 |     give divide(a, 2)</span>
+<span class="d">   |</span>
+<span class="d">   = it calls `divide`, which may sin</span>
+<span class="d">   = hint: declare `half` with `may sin`, or wrap this in `tempt ... forgive`</span></code></pre>
+<p>Confess a sin you cannot commit and you are warned about that too. Leave out a case in <code>discern</code>:</p>
+<pre class="report"><code><span class="x">error</span>: <span class="m">`discern` must face every case; missing `Lost`</span></code></pre>
+<p>A sin that nobody forgives ends the program, and tells you how it got there:</p>
+<pre class="report"><code><span class="x">sin</span>: <span class="m">divided by nothing</span>
+<span class="d">  --&gt; death.gesu:3</span>
+<span class="d">   |</span>
+<span class="d"> 3 |         sin &quot;divided by nothing&quot;</span>
+<span class="d">   |</span>
+<span class="d">   = in the parable `divide`, called on line 9</span>
+<span class="d">   = in the parable `share`, called on line 12</span>
+<span class="d">   = the wages of sin is death</span></code></pre>
+<h3 id="seventy-times-seven">Seventy times seven</h3>
+<p>In Matthew 18:21-22, Peter asks how often he must forgive his brother: "Up to seven times?" Jesus answers: "I do not say to you, up to seven times, but up to seventy times seven."</p>
+<p>Seventy times seven is 490, and Gesù keeps the count. Each time a <code>forgive</code> block catches a sin, the count goes up by one. It never goes down and it is shared by the whole run. The 491st sin is not forgiven:</p>
+<pre class="gesu"><code><span class="k">let</span> <span class="k">mortal</span> forgiven = <span class="n">0</span>
+<span class="k">repeat</span> <span class="n">500</span> <span class="k">times</span>
+    <span class="k">tempt</span>
+        <span class="k">sin</span> <span class="s">&quot;again&quot;</span>
+    <span class="k">forgive</span> trespass
+        forgiven = forgiven + <span class="n">1</span>
+    <span class="k">amen</span>
+<span class="k">amen</span>
+<span class="k">amen</span></code></pre>
+<pre class="report"><code><span class="x">mortal sin</span>: <span class="m">Matthew 18:22: forgive can only be run 490 times (unforgiven: again)</span>
+<span class="d">  --&gt; seventy.gesu:4</span>
+<span class="d">   |</span>
+<span class="d"> 4 |         sin &quot;again&quot;</span>
+<span class="d">   |</span>
+<span class="d">   = the wages of sin is death</span></code></pre>
+<p>What this means for you: <code>tempt ... forgive</code> is for the rare failure. A program that expects to fail more than 490 times, such as one reading 10,000 lines where many are bad, should check before it acts (<code>get</code>, <code>lookup</code> and <code>contains</code> give an answer without sinning) and keep <code>forgive</code> for what it could not foresee.</p>
+<h3 id="mortal-sins">Mortal sins</h3>
+<p>Some sins are mortal. Nothing forgives them: an index past the end of a multitude, a missing key, a Number grown past 9223372036854775807, a parable calling itself 2000 deep. For the first two there are safe forms, <code>get</code> and <code>lookup</code>, which give a <code>Maybe</code>.</p>
+<h2 id="kinds">Kinds</h2>
+<p>Every creature after its kind. A kind is either a record with named fields or a set of cases.</p>
+<pre class="gesu"><code><span class="k">kind</span> <span class="t">Disciple</span>
+    name: <span class="t">Text</span>
+    denials: <span class="t">Number</span>
+<span class="k">amen</span>
+
+<span class="k">kind</span> <span class="t">Verdict</span>
+    <span class="t">Saved</span>
+    <span class="t">Condemned</span>(<span class="t">Text</span>)
+<span class="k">amen</span>
+
+<span class="k">parable</span> judge(d: <span class="k">lend</span> <span class="t">Disciple</span>) -&gt; <span class="t">Verdict</span>
+    <span class="k">if</span> d.denials &gt;= <span class="n">3</span>
+        <span class="k">give</span> <span class="t">Condemned</span>(<span class="s">&quot;</span><span class="i">{d.name}</span><span class="s"> denied him </span><span class="i">{d.denials}</span><span class="s"> times&quot;</span>)
+    <span class="k">amen</span>
+    <span class="k">give</span> <span class="t">Saved</span>
+<span class="k">amen</span>
+
+<span class="k">let</span> <span class="k">mortal</span> peter = <span class="t">Disciple</span>(name: <span class="s">&quot;Peter&quot;</span>, denials: <span class="n">0</span>)
+<span class="k">repeat</span> <span class="n">3</span> <span class="k">times</span>
+    peter.denials = peter.denials + <span class="n">1</span>
+<span class="k">amen</span>
+<span class="k">preach</span> peter
+
+<span class="k">discern</span> judge(<span class="k">lend</span> peter)
+    <span class="t">Saved</span>: <span class="k">preach</span> <span class="s">&quot;saved&quot;</span>
+    <span class="t">Condemned</span>(reason):
+        <span class="k">preach</span> <span class="s">&quot;condemned: </span><span class="i">{reason}</span><span class="s">&quot;</span>
+        <span class="k">preach</span> <span class="s">&quot;and yet forgiven&quot;</span>
+<span class="k">amen</span>
+
+<span class="k">let</span> ages = {<span class="s">&quot;Methuselah&quot;</span>: <span class="n">969</span>, <span class="s">&quot;Noah&quot;</span>: <span class="n">950</span>}
+<span class="k">for</span> <span class="k">each</span> name, age <span class="k">in</span> ages
+    <span class="k">preach</span> <span class="s">&quot;</span><span class="i">{name}</span><span class="s"> lived </span><span class="i">{age}</span><span class="s"> years&quot;</span>
+<span class="k">amen</span>
+
+<span class="k">discern</span> <span class="b">lookup</span>(<span class="k">lend</span> ages, <span class="s">&quot;Adam&quot;</span>)
+    <span class="t">Found</span>(age): <span class="k">preach</span> <span class="s">&quot;Adam lived </span><span class="i">{age}</span><span class="s"> years&quot;</span>
+    <span class="t">Lost</span>: <span class="k">preach</span> <span class="s">&quot;Adam&#x27;s age is not written here&quot;</span>
+<span class="k">amen</span>
+<span class="k">amen</span></code></pre>
+<pre class="output"><code>Disciple(name: &quot;Peter&quot;, denials: 3)
+condemned: Peter denied him 3 times
+and yet forgiven
+Methuselah lived 969 years
+Noah lived 950 years
+Adam&#x27;s age is not written here</code></pre>
+<p>A <code>discern</code> takes as many cases as the kind has. Here are five, from the parable of the sower. A case may carry values, and its branch may be one line or several:</p>
+<pre class="gesu"><code><span class="k">kind</span> <span class="t">Soil</span>
+    <span class="t">Path</span>
+    <span class="t">Rock</span>(<span class="t">Number</span>)
+    <span class="t">Thorns</span>(<span class="t">Number</span>, <span class="t">Text</span>)
+    <span class="t">Good</span>(<span class="t">Number</span>)
+    <span class="t">Unsown</span>
+<span class="k">amen</span>
+
+<span class="k">parable</span> harvest(soil: <span class="t">Soil</span>) -&gt; <span class="t">Text</span>
+    <span class="k">discern</span> soil
+        <span class="t">Path</span>: <span class="k">give</span> <span class="s">&quot;the birds ate the seed&quot;</span>
+        <span class="t">Rock</span>(days): <span class="k">give</span> <span class="s">&quot;it sprang up and withered in </span><span class="i">{days}</span><span class="s"> days&quot;</span>
+        <span class="t">Thorns</span>(days, weed):
+            <span class="k">let</span> choked = days * <span class="n">2</span>
+            <span class="k">give</span> <span class="s">&quot;choked by </span><span class="i">{weed}</span><span class="s"> after </span><span class="i">{choked}</span><span class="s"> days&quot;</span>
+        <span class="t">Good</span>(yield): <span class="k">give</span> <span class="s">&quot;it bore fruit, </span><span class="i">{yield}</span><span class="s"> times over&quot;</span>
+        <span class="t">Unsown</span>: <span class="k">give</span> <span class="s">&quot;nothing was sown&quot;</span>
+    <span class="k">amen</span>
+<span class="k">amen</span>
+
+<span class="k">let</span> field = [<span class="t">Path</span>, <span class="t">Rock</span>(<span class="n">3</span>), <span class="t">Thorns</span>(<span class="n">20</span>, <span class="s">&quot;thistles&quot;</span>), <span class="t">Good</span>(<span class="n">100</span>), <span class="t">Unsown</span>]
+<span class="k">for</span> <span class="k">each</span> soil <span class="k">in</span> field
+    <span class="k">preach</span> harvest(soil)
+<span class="k">amen</span>
+<span class="k">amen</span></code></pre>
+<pre class="output"><code>the birds ate the seed
+it sprang up and withered in 3 days
+choked by thistles after 40 days
+it bore fruit, 100 times over
+nothing was sown</code></pre>
+<p>Delete the <code>Good</code> line and nothing runs:</p>
+<pre class="report"><code><span class="x">error</span>: <span class="m">`discern` must face every case; missing `Good`</span>
+<span class="d">  --&gt; discern.gesu:11</span>
+<span class="d">   |</span>
+<span class="d">11 |     discern soil</span>
+<span class="d">   |</span>
+<span class="d">   = the value is a Soil</span></code></pre>
+<p>The types:</p>
+<div class="table"><table><thead><tr><th>Type</th><th>Example</th></tr></thead><tbody><tr><td><code>Number</code></td><td><code>40</code> (whole, 64 bits, overflow is a mortal sin)</td></tr><tr><td><code>Decimal</code></td><td><code>3.14</code></td></tr><tr><td><code>Text</code></td><td><code>&quot;hosanna&quot;</code>, with <code>{values}</code> placed inside</td></tr><tr><td><code>Truth</code></td><td><code>Jesus</code>, <code>False</code></td></tr><tr><td><code>[T]</code></td><td><code>[&quot;Peter&quot;, &quot;Andrew&quot;]</code>, counted from 0</td></tr><tr><td><code>{K: V}</code></td><td><code>{&quot;Noah&quot;: 950}</code>, keyed by Text or Number</td></tr><tr><td><code>Maybe T</code></td><td><code>Found(3)</code>, <code>Lost</code></td></tr><tr><td>a kind</td><td><code>Disciple(name: &quot;Peter&quot;, denials: 0)</code></td></tr><tr><td><code>Pagan</code></td><td>anything that came from outside</td></tr></tbody></table></div>
+<h2 id="pagans-lua-python-and-json">Pagans: Lua, Python and JSON</h2>
+<p>You will not rewrite the world in Gesù. You do not have to. Import it, and baptize what it gives you.</p>
+<p>A value from foreign code has the type <code>Pagan</code>. You cannot preach it, compare it or add to it. <code>baptize x as T</code> turns it into a value of Gesù, and sins if the pagan is not what you claimed. Every call into foreign code may sin as well, so it must be confessed or forgiven like any other.</p>
+<p>Lua is always there. Given <code>inventory.lua</code>:</p>
+<pre class="shell"><code>local stock = { loaves = 5, fishes = 2 }
+local M = {}
+
+function M.count(item) return stock[item] end
+
+function M.multiply(item, by)
+  stock[item] = stock[item] * by
+  return stock[item]
+end
+
+function M.baskets() return { &quot;barley&quot;, &quot;wheat&quot;, &quot;figs&quot; } end
+
+return M</code></pre>
+<pre class="gesu"><code><span class="k">pagan</span> lua <span class="s">&quot;inventory.lua&quot;</span> <span class="k">as</span> inventory
+
+<span class="k">parable</span> stock(item: <span class="t">Text</span>) -&gt; <span class="t">Number</span> <span class="k">may</span> <span class="k">sin</span>
+    <span class="k">give</span> <span class="k">baptize</span> inventory.count(item) <span class="k">as</span> <span class="t">Number</span>
+<span class="k">amen</span>
+
+<span class="k">tempt</span>
+    <span class="k">preach</span> <span class="s">&quot;loaves: {stock(&quot;</span>loaves<span class="s">&quot;)}&quot;</span>
+    <span class="k">let</span> fed = <span class="k">baptize</span> inventory.multiply(<span class="s">&quot;loaves&quot;</span>, <span class="n">1000</span>) <span class="k">as</span> <span class="t">Number</span>
+    <span class="k">preach</span> <span class="s">&quot;after the miracle: </span><span class="i">{fed}</span><span class="s">&quot;</span>
+    <span class="k">let</span> baskets = <span class="k">baptize</span> inventory.baskets() <span class="k">as</span> [<span class="t">Text</span>]
+    <span class="k">preach</span> baskets
+    <span class="k">preach</span> stock(<span class="s">&quot;wine&quot;</span>)
+<span class="k">forgive</span> trespass
+    <span class="k">preach</span> <span class="s">&quot;the pagans failed us: </span><span class="i">{trespass}</span><span class="s">&quot;</span>
+<span class="k">amen</span>
+<span class="k">amen</span></code></pre>
+<pre class="output"><code>loaves: 5
+after the miracle: 5000
+[&quot;barley&quot;, &quot;wheat&quot;, &quot;figs&quot;]
+the pagans failed us: cannot baptize as Number: the pagan gave nothing</code></pre>
+<p>Python needs <code>./install.sh --python</code>. Then every module your Python can import is yours:</p>
+<pre class="gesu"><code><span class="k">pagan</span> python <span class="s">&quot;statistics&quot;</span> <span class="k">as</span> stats
+<span class="k">pagan</span> python <span class="s">&quot;math&quot;</span> <span class="k">as</span> math
+
+<span class="k">parable</span> average(values: <span class="k">lend</span> [<span class="t">Number</span>]) -&gt; <span class="t">Decimal</span> <span class="k">may</span> <span class="k">sin</span>
+    <span class="k">let</span> raw = stats.mean(values)
+    <span class="k">give</span> <span class="k">baptize</span> raw <span class="k">as</span> <span class="t">Decimal</span>
+<span class="k">amen</span>
+
+<span class="k">tempt</span>
+    <span class="k">preach</span> average(<span class="k">lend</span> [<span class="n">5</span>, <span class="n">2</span>, <span class="n">12</span>])
+    <span class="k">preach</span> <span class="k">baptize</span> math.gcd(<span class="n">490</span>, <span class="n">70</span>) <span class="k">as</span> <span class="t">Number</span>
+    <span class="k">preach</span> average(<span class="k">lend</span> [])
+<span class="k">forgive</span> trespass
+    <span class="k">preach</span> <span class="s">&quot;the pagans failed us: </span><span class="i">{trespass}</span><span class="s">&quot;</span>
+<span class="k">amen</span>
+<span class="k">amen</span></code></pre>
+<pre class="output"><code>6.333333333333333
+70
+the pagans failed us: StatisticsError: mean requires at least one data point</code></pre>
+<p>JSON is pagan data. It is baptized straight into your kinds:</p>
+<pre class="gesu"><code><span class="k">kind</span> <span class="t">Apostle</span>
+    name: <span class="t">Text</span>
+    fisherman: <span class="t">Truth</span>
+    age: <span class="t">Maybe</span> <span class="t">Number</span>
+<span class="k">amen</span>
+
+<span class="k">let</span> raw = <span class="s">&quot;[</span><span class="e">\{</span><span class="s"></span><span class="e">\&quot;</span><span class="s">name</span><span class="e">\&quot;</span><span class="s">: </span><span class="e">\&quot;</span><span class="s">Peter</span><span class="e">\&quot;</span><span class="s">, </span><span class="e">\&quot;</span><span class="s">fisherman</span><span class="e">\&quot;</span><span class="s">: true, </span><span class="e">\&quot;</span><span class="s">age</span><span class="e">\&quot;</span><span class="s">: 30}, </span><span class="e">\{</span><span class="s"></span><span class="e">\&quot;</span><span class="s">name</span><span class="e">\&quot;</span><span class="s">: </span><span class="e">\&quot;</span><span class="s">Matthew</span><span class="e">\&quot;</span><span class="s">, </span><span class="e">\&quot;</span><span class="s">fisherman</span><span class="e">\&quot;</span><span class="s">: false}]&quot;</span>
+
+<span class="k">tempt</span>
+    <span class="k">let</span> apostles = <span class="k">baptize</span> <span class="b">parse_json</span>(raw) <span class="k">as</span> [<span class="t">Apostle</span>]
+    <span class="k">for</span> <span class="k">each</span> a <span class="k">in</span> apostles
+        <span class="k">preach</span> a
+    <span class="k">amen</span>
+    <span class="k">preach</span> <span class="b">to_json</span>(<span class="k">lend</span> apostles)
+    <span class="k">let</span> wrong = <span class="k">baptize</span> <span class="b">parse_json</span>(<span class="s">&quot;[1, 2, </span><span class="e">\&quot;</span><span class="s">three</span><span class="e">\&quot;</span><span class="s">]&quot;</span>) <span class="k">as</span> [<span class="t">Number</span>]
+    <span class="k">preach</span> wrong
+<span class="k">forgive</span> trespass
+    <span class="k">preach</span> <span class="s">&quot;forgiven: </span><span class="i">{trespass}</span><span class="s">&quot;</span>
+<span class="k">amen</span>
+<span class="k">amen</span></code></pre>
+<pre class="output"><code>Apostle(name: &quot;Peter&quot;, fisherman: Jesus, age: Found(30))
+Apostle(name: &quot;Matthew&quot;, fisherman: False, age: Lost)
+[{&quot;name&quot;:&quot;Peter&quot;,&quot;fisherman&quot;:true,&quot;age&quot;:30},{&quot;name&quot;:&quot;Matthew&quot;,&quot;fisherman&quot;:false,&quot;age&quot;:null}]
+forgiven: element 2: cannot baptize as Number: the pagan gave the Text &quot;three&quot;</code></pre>
+<p>Values cross the border as copies. Nothing can be entrusted to a pagan.</p>
+<h2 id="the-other-errors-so-you-know-them-when-you-meet-them">The other errors, so you know them when you meet them</h2>
+<pre class="report"><code><span class="x">error</span>: <span class="m">you buried your talent</span>
+<span class="d">   = `unused` is never used</span>
+
+<span class="x">error</span>: <span class="m">it is written: DISCIPLES is 12</span>
+<span class="d">   = `DISCIPLES` is law</span>
+
+<span class="x">error</span>: <span class="m">`if` accepts only Jesus or False, and was given a Number</span>
+<span class="d">   = hint: compare it to something, as in `x is 0`</span>
+
+<span class="x">error</span>: <span class="m">a Text and a Number cannot be added</span>
+<span class="d">   = Gesù has no implicit conversions</span>
+<span class="d">   = hint: place the value inside the text, as in &quot;total: {x}&quot;</span>
+
+<span class="x">error</span>: <span class="m">`fixed` is not mortal and cannot change</span>
+<span class="d">   = hint: declare it with `let mortal fixed`</span>
+
+<span class="x">error</span>: <span class="m">unknown name `None`</span>
+<span class="d">   = Gesù has no null; an absent value is `Lost`, of type `Maybe T`</span>
+
+<span class="w">warning</span>: <span class="m">the rooster crows</span>
+<span class="d">   = Jesus has been denied three times (lines 1, 2, 3)</span></code></pre>
+<h2 id="the-33-built-in-parables">The 33 built-in parables</h2>
+<div class="table"><table><thead><tr><th>For</th><th>Parables</th></tr></thead><tbody><tr><td>Multitudes</td><td><code>length</code> <code>push</code> <code>pop</code> <code>get</code> <code>contains</code> <code>remove</code> <code>sort</code> <code>reverse</code> <code>range</code> <code>copy</code></td></tr><tr><td>Maps</td><td><code>length</code> <code>lookup</code> <code>contains</code> <code>remove</code> <code>keys</code></td></tr><tr><td>Text</td><td><code>length</code> <code>split</code> <code>join</code> <code>trim</code> <code>upper</code> <code>lower</code> <code>replace</code> <code>chars</code> <code>contains</code> <code>text</code></td></tr><tr><td>Numbers</td><td><code>number</code> <code>decimal</code> <code>floor</code> <code>round</code> <code>abs</code> <code>min</code> <code>max</code></td></tr><tr><td>The world</td><td><code>read_file</code> <code>write_file</code> <code>read_line</code> <code>args</code></td></tr><tr><td>JSON</td><td><code>parse_json</code> <code>to_json</code></td></tr></tbody></table></div>
+<p><code>number</code>, <code>decimal</code> on a Text, <code>read_file</code>, <code>write_file</code> and <code>parse_json</code> may sin.</p>
+<h2 id="your-editor">Your editor</h2>
+<p><code>gesu lsp</code> is a language server. Any editor that speaks the Language Server Protocol can start it and receive the checker's errors as you type, completion, and a note on hover for every word of the language.</p>
+<p>Two editors are set up for you in <code>editors/</code>.</p>
+<p><strong>Neovim.</strong> Syntax colors, indentation, and the language server. With lazy.nvim:</p>
+<pre class="shell"><code>return {
+  { dir = &quot;~/path/to/gesu/editors/nvim&quot;, name = &quot;gesu&quot;, lazy = false },
+}</code></pre>
+<p>Without a plugin manager, add <code>editors/nvim</code> to your <code>runtimepath</code>. The syntax and indent files work in Vim too.</p>
+<p><strong>VS Code and Cursor.</strong> The same, as an extension:</p>
+<pre class="shell"><code>editors/vscode/install.sh          # VS Code
+editors/vscode/install.sh cursor   # Cursor</code></pre>
+<p>In both, <code>True</code> is colored as an error before the checker even speaks.</p>
+<h2 id="what-ges-does-not-have">What Gesù does not have</h2>
+<p>No null. No <code>True</code>. No shadowing. No implicit conversions. No lifetimes. No classes. No async. No package manager. No parables passed as values, yet.</p>
+<h2 id="what-is-in-this-version">What is in this version</h2>
+<ul>
+<li><strong>v1</strong>: the interpreter, static types, <code>mortal</code>, give and <code>lend</code>, declared sins, buried talents.</li>
+<li><strong>v2</strong>: <code>entrust</code>, <code>Maybe</code> with <code>discern</code>, kinds.</li>
+<li><strong>v3</strong>: the Lua pagan.</li>
+<li><strong>v4</strong>: the Python pagan.</li>
+</ul>
+<p>The interpreter is 4,600 lines of Rust. Run the tests with <code>cargo test</code>: every example above is run and compared with what this page says it prints.</p>
+<p>Amen.</p>
+</main>
+</body>
+</html>
