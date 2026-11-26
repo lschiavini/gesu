@@ -81,6 +81,7 @@ Run a program:
 ```sh
 gesu examples/hello.gesu
 gesu check examples/hello.gesu   # examine it, do not run it
+gesu fmt examples/hello.gesu     # set every line in its place
 ```
 
 Later, to get the newest version:
@@ -645,9 +646,51 @@ warning: the rooster crows
 
 `number`, `decimal` on a Text, `read_file`, `write_file` and `parse_json` may sin.
 
+## The formatter
+
+Nobody has ever won an argument about indentation. Gesù ends it: there is one way to set a program on the page, and `gesu fmt` knows it.
+
+```sh
+gesu fmt sermon.gesu            # rewrite the file
+gesu fmt --check sermon.gesu    # change nothing; fail if it is not formatted
+gesu fmt -                      # read stdin, write stdout
+```
+
+You may write this:
+
+```lua
+parable harvest(soil:Soil)->Text
+discern soil
+Path:give "the birds ate the seed"
+Thorns(days,weed):
+let choked=days*2
+give "choked by {weed} after {choked} days"
+amen
+amen
+```
+
+And you will be given this:
+
+```lua
+parable harvest(soil: Soil) -> Text
+    discern soil
+        Path: give "the birds ate the seed"
+        Thorns(days, weed):
+            let choked = days * 2
+            give "choked by {weed} after {choked} days"
+    amen
+amen
+```
+
+Four spaces for each block. One space where one belongs. No blank lines in pairs. Your texts and your comments are left exactly as you wrote them.
+
+It cannot change what a program means. Before anything is written, the words of the program are compared before and after. If one differs, the file is left alone.
+
+In an editor, the same formatter runs when you save.
+
 ## Your editor
 
-Install `gesu` first. Every editor below starts it as `gesu lsp`, a language server: it gives the checker's errors as you type, completion, and a note on hover for every word of the language. Colors come from a grammar made for each family of editors.
+Install `gesu` first. Every editor below starts it as `gesu lsp`, a language server: it gives the checker's errors as you type, completion, a note on hover for every word of the language, and the formatter. Colors come from a grammar made for each family of editors.
 
 | Editor | Colors | Errors as you type | Get it |
 |---|---|---|---|
@@ -749,7 +792,9 @@ No null. No `True`. No shadowing. No implicit conversions. No lifetimes. No clas
 - **v2**: `entrust`, `Maybe` with `discern`, kinds.
 - **v3**: the Lua pagan.
 - **v4**: the Python pagan.
+- **0.2**: `repent`, `gesu update`.
+- **0.3**: `gesu fmt`, and formatting on save in the editor.
 
-The interpreter is 4,600 lines of Rust. Run the tests with `cargo test`: every example above is run and compared with what this page says it prints.
+The interpreter is 5,500 lines of Rust. Run the tests with `cargo test`: every example above is run and compared with what this page says it prints.
 
 Amen.

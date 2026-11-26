@@ -10,7 +10,17 @@ permissions:
   contents: write
 
 jobs:
+  draft:
+    # The release stays a draft until every file is attached, so that
+    # `releases/latest` never points at a release with files missing.
+    runs-on: ubuntu-latest
+    steps:
+      - env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$GITHUB_REF_NAME" --repo "$GITHUB_REPOSITORY" --title "$GITHUB_REF_NAME" --generate-notes --draft
+
   build:
+    needs: draft
     strategy:
       fail-fast: false
       matrix:
@@ -43,8 +53,6 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          # Five jobs race to create the release; the losers only upload.
-          gh release create "$GITHUB_REF_NAME" --title "$GITHUB_REF_NAME" --generate-notes || true
           gh release upload "$GITHUB_REF_NAME" gesu-${{ matrix.target }}.* --clobber
 
   extension:
@@ -63,3 +71,11 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh release upload "$GITHUB_REF_NAME" editors/vscode/gesu-lang.vsix --clobber
+
+  publish:
+    needs: [build, extension]
+    runs-on: ubuntu-latest
+    steps:
+      - env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release edit "$GITHUB_REF_NAME" --repo "$GITHUB_REPOSITORY" --draft=false --latest

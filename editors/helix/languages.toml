@@ -9,6 +9,7 @@ file-types = ["gesu"]
 comment-token = "--"
 indent = { tab-width = 4, unit = "    " }
 language-servers = ["gesu"]
+auto-format = true
 
 [language-server.gesu]
 command = "gesu"

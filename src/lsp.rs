@@ -1,6 +1,7 @@
 //! The language server: `gesu lsp`. It speaks the Language Server Protocol
 //! over stdin and stdout, and gives an editor the checker's errors as you
-//! type, completion of the language's words, and a note on hover.
+//! type, completion of the language's words, a note on hover, and the
+//! formatter.
 
 use crate::check::{Checker, BUILTINS};
 use crate::diag::{Diag, Level};
@@ -303,6 +304,7 @@ pub fn serve() -> i32 {
                         ("textDocumentSync", Data::Int(1)),
                         ("completionProvider", Data::Map(vec![])),
                         ("hoverProvider", Data::Bool(true)),
+                        ("documentFormattingProvider", Data::Bool(true)),
                     ]),
                 ),
                 ("serverInfo", obj(vec![("name", s("gesu")), ("version", s(env!("CARGO_PKG_VERSION")))])),
@@ -337,6 +339,16 @@ pub fn serve() -> i32 {
                 ]));
             }
             "textDocument/completion" => reply(completions(docs.get(&uri).map(|t| t.as_str()).unwrap_or(""))),
+            "textDocument/formatting" => {
+                // One edit that replaces the whole text. A text that cannot
+                // be read is left as it is; the diagnostics say why.
+                let edit = docs.get(&uri).and_then(|src| {
+                    let text = crate::fmt::format(src).ok().filter(|text| text != src)?;
+                    let end = position(src.split('\n').count(), 0);
+                    Some(obj(vec![("range", obj(vec![("start", position(0, 0)), ("end", end)])), ("newText", s(&text))]))
+                });
+                reply(Data::List(edit.into_iter().collect()));
+            }
             "textDocument/hover" => {
                 let number = |key: &str| match path(&params, &["position", key]) {
                     Some(Data::Int(n)) => *n as usize,

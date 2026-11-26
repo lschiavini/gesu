@@ -1,6 +1,7 @@
 mod ast;
 mod check;
 mod diag;
+mod fmt;
 mod interp;
 mod lexer;
 mod lsp;
@@ -21,6 +22,7 @@ usage:
   gesu <file.gesu> [args...]          run a program
   gesu run <file.gesu> [args...]      run a program
   gesu check <file.gesu>              examine a program without running it
+  gesu fmt <file.gesu>...             format programs in place (--check to only look)
   gesu lsp                            serve an editor (Language Server Protocol)
   gesu update                         replace this gesu with the latest release
 ";
@@ -53,6 +55,7 @@ fn real_main() -> i32 {
             return 0;
         }
         Some("lsp") => return lsp::serve(),
+        Some("fmt") => return fmt::run(&argv[1..]),
         Some("update") => return update::update(argv.iter().any(|a| a == "--force")),
         Some("run") => {
             argv.remove(0);

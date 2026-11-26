@@ -24,5 +24,8 @@ if [ -n "$features" ] && [ "$(uname)" = "Darwin" ]; then
 fi
 
 mkdir -p "$HOME/.local/bin"
+# Remove first: macOS kills a binary overwritten in place while an editor
+# still runs the old one.
+rm -f "$HOME/.local/bin/gesu"
 cp "$bin" "$HOME/.local/bin/gesu"
 echo "installed: $HOME/.local/bin/gesu"

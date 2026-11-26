@@ -26,6 +26,7 @@ amen
 - **Errors as you type**, straight from the language's checker: `Thou shalt not steal`, unconfessed sins, buried talents.
 - **Completion** of the language's words, the built-in parables, and the names in your file.
 - **A note on hover** for every word of the language.
+- **Formatting when you save**, by `gesu fmt`: every line at its depth, one space where one belongs.
 - **Indentation** that follows `amen`.
 
 ## Before you start

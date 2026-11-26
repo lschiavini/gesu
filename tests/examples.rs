@@ -38,3 +38,17 @@ fn examples_print_what_they_should() {
 fn faulty_programs_are_refused() {
     check_dir(Path::new("tests/errors").to_str().unwrap(), "err");
 }
+
+#[test]
+fn examples_are_formatted() {
+    for dir in ["examples", "tests/errors"] {
+        for entry in std::fs::read_dir(dir).expect("directory") {
+            let path = entry.expect("entry").path();
+            if path.extension().and_then(|e| e.to_str()) != Some("gesu") {
+                continue;
+            }
+            let out = Command::new(env!("CARGO_BIN_EXE_gesu")).arg("fmt").arg("--check").arg(&path).output().expect("gesu runs");
+            assert!(out.status.success(), "{} is not as `gesu fmt` would write it", path.display());
+        }
+    }
+}

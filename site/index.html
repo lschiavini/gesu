@@ -324,6 +324,7 @@ main > p:last-child {
 <a href="#pagans-lua-python-and-json">Pagans</a>
 <a href="#the-other-errors-so-you-know-them-when-you-meet-them">The other errors</a>
 <a href="#the-33-built-in-parables">The 33 built-in parables</a>
+<a href="#the-formatter">The formatter</a>
 <a href="#your-editor">Your editor</a>
 <a href="#what-ges-does-not-have">What Gesù does not have</a>
 <a href="#what-is-in-this-version">What is in this version</a>
@@ -372,7 +373,8 @@ cd gesu
 ./install.sh --python   # the same, with the Python pagan included</code></pre>
 <p>Run a program:</p>
 <pre class="shell"><code>gesu examples/hello.gesu
-gesu check examples/hello.gesu   # examine it, do not run it</code></pre>
+gesu check examples/hello.gesu   # examine it, do not run it
+gesu fmt examples/hello.gesu     # set every line in its place</code></pre>
 <p>Later, to get the newest version:</p>
 <pre class="shell"><code>gesu update</code></pre>
 <h2 id="the-first-program">The first program</h2>
@@ -773,8 +775,34 @@ forgiven: element 2: cannot baptize as Number: the pagan gave the Text &quot;thr
 <h2 id="the-33-built-in-parables">The 33 built-in parables</h2>
 <div class="table"><table><thead><tr><th>For</th><th>Parables</th></tr></thead><tbody><tr><td>Multitudes</td><td><code>length</code> <code>push</code> <code>pop</code> <code>get</code> <code>contains</code> <code>remove</code> <code>sort</code> <code>reverse</code> <code>range</code> <code>copy</code></td></tr><tr><td>Maps</td><td><code>length</code> <code>lookup</code> <code>contains</code> <code>remove</code> <code>keys</code></td></tr><tr><td>Text</td><td><code>length</code> <code>split</code> <code>join</code> <code>trim</code> <code>upper</code> <code>lower</code> <code>replace</code> <code>chars</code> <code>contains</code> <code>text</code></td></tr><tr><td>Numbers</td><td><code>number</code> <code>decimal</code> <code>floor</code> <code>round</code> <code>abs</code> <code>min</code> <code>max</code></td></tr><tr><td>The world</td><td><code>read_file</code> <code>write_file</code> <code>read_line</code> <code>args</code></td></tr><tr><td>JSON</td><td><code>parse_json</code> <code>to_json</code></td></tr></tbody></table></div>
 <p><code>number</code>, <code>decimal</code> on a Text, <code>read_file</code>, <code>write_file</code> and <code>parse_json</code> may sin.</p>
+<h2 id="the-formatter">The formatter</h2>
+<p>Nobody has ever won an argument about indentation. Gesù ends it: there is one way to set a program on the page, and <code>gesu fmt</code> knows it.</p>
+<pre class="shell"><code>gesu fmt sermon.gesu            # rewrite the file
+gesu fmt --check sermon.gesu    # change nothing; fail if it is not formatted
+gesu fmt -                      # read stdin, write stdout</code></pre>
+<p>You may write this:</p>
+<pre class="gesu"><code><span class="k">parable</span> harvest(soil:<span class="t">Soil</span>)-&gt;<span class="t">Text</span>
+<span class="k">discern</span> soil
+<span class="t">Path</span>:<span class="k">give</span> <span class="s">&quot;the birds ate the seed&quot;</span>
+<span class="t">Thorns</span>(days,weed):
+<span class="k">let</span> choked=days*<span class="n">2</span>
+<span class="k">give</span> <span class="s">&quot;choked by </span><span class="i">{weed}</span><span class="s"> after </span><span class="i">{choked}</span><span class="s"> days&quot;</span>
+<span class="k">amen</span>
+<span class="k">amen</span></code></pre>
+<p>And you will be given this:</p>
+<pre class="gesu"><code><span class="k">parable</span> harvest(soil: <span class="t">Soil</span>) -&gt; <span class="t">Text</span>
+    <span class="k">discern</span> soil
+        <span class="t">Path</span>: <span class="k">give</span> <span class="s">&quot;the birds ate the seed&quot;</span>
+        <span class="t">Thorns</span>(days, weed):
+            <span class="k">let</span> choked = days * <span class="n">2</span>
+            <span class="k">give</span> <span class="s">&quot;choked by </span><span class="i">{weed}</span><span class="s"> after </span><span class="i">{choked}</span><span class="s"> days&quot;</span>
+    <span class="k">amen</span>
+<span class="k">amen</span></code></pre>
+<p>Four spaces for each block. One space where one belongs. No blank lines in pairs. Your texts and your comments are left exactly as you wrote them.</p>
+<p>It cannot change what a program means. Before anything is written, the words of the program are compared before and after. If one differs, the file is left alone.</p>
+<p>In an editor, the same formatter runs when you save.</p>
 <h2 id="your-editor">Your editor</h2>
-<p>Install <code>gesu</code> first. Every editor below starts it as <code>gesu lsp</code>, a language server: it gives the checker's errors as you type, completion, and a note on hover for every word of the language. Colors come from a grammar made for each family of editors.</p>
+<p>Install <code>gesu</code> first. Every editor below starts it as <code>gesu lsp</code>, a language server: it gives the checker's errors as you type, completion, a note on hover for every word of the language, and the formatter. Colors come from a grammar made for each family of editors.</p>
 <div class="table"><table><thead><tr><th>Editor</th><th>Colors</th><th>Errors as you type</th><th>Get it</th></tr></thead><tbody><tr><td>VS Code</td><td>yes</td><td>yes</td><td><a href="https://marketplace.visualstudio.com/items?itemName=LucasSchiavini.gesu-lang">Marketplace</a></td></tr><tr><td>Cursor, VSCodium</td><td>yes</td><td>yes</td><td><a href="https://github.com/lschiavini/gesu/releases/latest/download/gesu-lang.vsix">gesu-lang.vsix</a></td></tr><tr><td>Neovim</td><td>yes, tree-sitter</td><td>yes</td><td><a href="https://github.com/lschiavini/gesu/tree/main/editors/nvim">editors/nvim</a></td></tr><tr><td>Zed</td><td>yes, tree-sitter</td><td>yes</td><td><a href="https://github.com/lschiavini/gesu/tree/main/editors/zed">editors/zed</a></td></tr><tr><td>Emacs</td><td>yes</td><td>yes, eglot or lsp-mode</td><td><a href="https://github.com/lschiavini/gesu/tree/main/editors/emacs">editors/emacs</a></td></tr><tr><td>Helix</td><td>yes, tree-sitter</td><td>yes</td><td><a href="https://github.com/lschiavini/gesu/tree/main/editors/helix">editors/helix</a></td></tr><tr><td>Sublime Text</td><td>yes</td><td>yes, LSP package</td><td><a href="https://github.com/lschiavini/gesu/tree/main/editors/sublime">editors/sublime</a></td></tr><tr><td>JetBrains</td><td>yes</td><td>yes, LSP4IJ plugin</td><td>see below</td></tr><tr><td>Vim</td><td>yes</td><td>with an LSP plugin</td><td><a href="https://github.com/lschiavini/gesu/tree/main/editors/nvim">editors/nvim</a></td></tr></tbody></table></div>
 <p>In every one of them, <code>True</code> is colored as an error before the checker even speaks.</p>
 <h3 id="vs-code-cursor-vscodium">VS Code, Cursor, VSCodium</h3>
@@ -826,8 +854,10 @@ cp editors/helix/highlights.scm ~/.config/helix/runtime/queries/gesu/</code></pr
 <li><strong>v2</strong>: <code>entrust</code>, <code>Maybe</code> with <code>discern</code>, kinds.</li>
 <li><strong>v3</strong>: the Lua pagan.</li>
 <li><strong>v4</strong>: the Python pagan.</li>
+<li><strong>0.2</strong>: <code>repent</code>, <code>gesu update</code>.</li>
+<li><strong>0.3</strong>: <code>gesu fmt</code>, and formatting on save in the editor.</li>
 </ul>
-<p>The interpreter is 4,600 lines of Rust. Run the tests with <code>cargo test</code>: every example above is run and compared with what this page says it prints.</p>
+<p>The interpreter is 5,500 lines of Rust. Run the tests with <code>cargo test</code>: every example above is run and compared with what this page says it prints.</p>
 <p>Amen.</p>
 </main>
 </div>
